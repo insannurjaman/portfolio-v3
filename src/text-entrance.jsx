@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 const text = "h1,h2,h3,h4,h5,h6,p,li,dt,dd,figcaption";
 const excluded = "nav,aside,dialog,button,summary,[role='tablist'],[role='status'],[aria-live],[aria-hidden='true'],.sr-only,.content-status";
 const nestedContent = `${text},img,picture,svg,video,canvas,iframe,button,input,select,textarea`;
+const headings = "h1,h2,h3,h4,h5,h6";
+const pending = "data-text-entrance-pending";
 
 function visitText(node, visit) {
   if (!(node instanceof Element)) return;
@@ -28,31 +30,43 @@ export function TextEntrance() {
     };
 
     const observer = new IntersectionObserver(entries => {
-      for (const { target, isIntersecting, intersectionRatio } of entries) {
-        if (!isIntersecting || intersectionRatio === 0 || completed.has(target) || !target.isConnected) continue;
+      for (const { target, isIntersecting } of entries) {
+        if (!isIntersecting || !target.hasAttribute(pending) || !target.isConnected) continue;
         observer.unobserve(target);
+        target.removeAttribute(pending);
         completed.add(target);
 
         const focus = focusedContent();
         if (reduced.matches || target.contains(focus) || (focus !== document.body && focus?.contains(target))) continue;
 
+        const previous = target.previousElementSibling;
+        const followsHeading = target.matches("p") && previous?.matches(headings) && running.has(previous);
         const animation = target.animate([
-          { opacity: 0, translate: "0 12px" },
+          { opacity: 0, translate: "0 16px" },
           { opacity: getComputedStyle(target).opacity, translate: "0 0" },
-        ], { duration: 420, easing: "cubic-bezier(0.16, 1, 0.3, 1)" });
+        ], {
+          duration: 520,
+          delay: followsHeading ? 80 : 0,
+          easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          fill: "backwards",
+        });
         running.set(target, animation);
         animation.addEventListener("finish", () => running.delete(target), { once: true });
       }
-    });
+    }, { rootMargin: "0px 0px -48px 0px" });
 
     const observe = element => {
       if (!completed.has(element) && element.closest("main,footer") && !element.closest(excluded) &&
-          !element.querySelector(nestedContent) && element.textContent.trim()) observer.observe(element);
+          !element.querySelector(nestedContent) && element.textContent.trim()) {
+        element.setAttribute(pending, "");
+        observer.observe(element);
+      }
     };
     const changes = new MutationObserver(records => {
       for (const { removedNodes } of records) {
         for (const node of removedNodes) visitText(node, element => {
           observer.unobserve(element);
+          element.removeAttribute(pending);
           cancel(element);
         });
       }
@@ -79,6 +93,7 @@ export function TextEntrance() {
     return () => {
       observer.disconnect();
       changes.disconnect();
+      root.querySelectorAll(`[${pending}]`).forEach(element => element.removeAttribute(pending));
       running.forEach((_, element) => cancel(element));
       root.removeEventListener("focusin", showFocusedText);
       reduced.removeEventListener("change", updateMotionPreference);
