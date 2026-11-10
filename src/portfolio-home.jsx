@@ -135,7 +135,10 @@ export function PortfolioHome({ data, interactive = true }) {
       <p className="home-impact-note" id="selected-impact">Results are reported in my resume and project notes. The linked case studies document the evidence and its limits.</p>
     </section>
     <section className="home-project-section home-shipped" id="shipped-projects" aria-labelledby="shipped-projects-title">
-      <header><h2 id="shipped-projects-title">Shipped Projects</h2><p>Tools and systems I’ve built for design and frontend workflows.</p></header>
+      <header>
+        <h2 id="shipped-projects-title">Shipped Products</h2>
+        <p>Beyond design, I build and launch my own products. Here are a few you can use today.</p>
+      </header>
       <div className="home-card-grid">{projects.map(project => <HomeCard key={project.path} project={project}/>)}</div>
       <a className="home-spotlight" id="antiflex-ui-highlight" aria-label="Explore antiflex/ui" href={ANTIFLEX_UI.website} target="_blank" rel="noopener noreferrer">
         <span id="chamfer-ui-highlight" aria-hidden="true"/>
