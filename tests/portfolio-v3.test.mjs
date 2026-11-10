@@ -42,7 +42,7 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
     const { PortfolioHome } = await server.ssrLoadModule("/src/portfolio-home.jsx");
     const { PortfolioHeader, PortfolioFooter } = await server.ssrLoadModule("/src/portfolio-shell.jsx");
     const html = render(create(PortfolioHeader, { interactive: false }), create(PortfolioHome, { interactive: false }), create(PortfolioFooter));
-    for (const path of ["/", "/work", "/side-projects", "/#contact", "/design-systems", "/articles", "/industries"]) {
+    for (const path of ["/", "/#contact", "/design-systems", "/articles", "/industries"]) {
       assert.ok(html.includes(`href="${path}"`), path);
     }
     assert.match(html, /id="recommendations-list"/);
@@ -50,6 +50,9 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
     assert.match(html, /id="contact"/);
     assert.match(html, /id="experience"/);
     assert.doesNotMatch(html, /href="\/about"/);
+    const primaryNav = html.match(/<nav[^>]*aria-label="Primary navigation"[^>]*>[\s\S]*?<\/nav>/)[0];
+    assert.doesNotMatch(primaryNav, /href="\/(?:work|side-projects)"/);
+    assert.match(primaryNav, /href="https:\/\/drive\.google\.com\/file\/d\/[^"]+" target="_blank" rel="noopener noreferrer">Resume/);
     assert.doesNotMatch(html, /role="switch"|aria-label="Next recommendation"|data-scroll-generation|data-thumbnail-generation/);
   } finally {
     await server.close();

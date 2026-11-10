@@ -332,7 +332,7 @@ function PortfolioApp(){
   useEffect(() => { closeSearch(); }, [pathname, closeSearch]);
   return <>
     <ScrollReset ready={!!data}/>
-    {workFirst ? <EditorialHeader resume={data?.resume} onSearch={openSearch}/> : <PortfolioHeader/>}
+    {workFirst ? <EditorialHeader resume={data?.resume} onSearch={openSearch}/> : <PortfolioHeader resume={data?.resume}/>}
     {data ? <>
       <SearchPalette data={data} open={searchOpen} onClose={closeSearch} returnFocus={returnFocus}/>
       <Routes>

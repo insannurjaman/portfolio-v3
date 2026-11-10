@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ArrowUpRight, Menu, Moon, Search, Sun } from "lucide-react";
+import { ArrowUpRight, Moon, Search, Sun } from "lucide-react";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { RESUME_URL } from "./editorial-shell.jsx";
 import "./portfolio-shell.css";
@@ -8,12 +8,6 @@ import "./portfolio-shell.css";
 export const PORTFOLIO_PORTRAIT = "/media/about/photo-reveal-30c6aeeb-800.jpg";
 export const PORTFOLIO_LINKEDIN = "https://www.linkedin.com/in/insannurjaman/";
 
-const navigation = [
-  ["Home", "/"],
-  ["Portfolio", "/work"],
-  ["Projects", "/side-projects"],
-  ["Connect", "/#contact"],
-];
 const moreLinks = [
   ["Design systems", "/design-systems"], ["AI practice", "/ai-practice"],
   ["Industry explorations", "/industries"], ["Journal", "/articles"],
@@ -34,30 +28,21 @@ export function ThemeSwitch() {
   </button>;
 }
 
-export function PortfolioHeader({ interactive = true }) {
-  const disclosure = useRef(null);
+export function PortfolioHeader({ interactive = true, resume = RESUME_URL }) {
   const { pathname, hash } = useLocation();
-  const closeMenu = () => { if (disclosure.current) disclosure.current.open = false; };
-  const links = navigation.map(([label, path]) => path.includes("#")
-    ? <Link key={path} to={path} onClick={closeMenu} aria-current={pathname === "/" && hash === "#contact" ? "location" : undefined}>{label}</Link>
-    : <NavLink key={path} to={path} end={path === "/"} onClick={closeMenu}>{label}</NavLink>);
 
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="portfolio-header">
       <nav className="portfolio-nav" aria-label="Primary navigation">
-        <Link className="portfolio-nav-portrait" to="/" aria-label="Insan Nurjaman home" onClick={closeMenu}>
+        <Link className="portfolio-nav-portrait" to="/" aria-label="Insan Nurjaman home">
           <img src={PORTFOLIO_PORTRAIT} alt="" width="20" height="20"/>
         </Link>
-        <div className="portfolio-nav-links">{links}</div>
-        <details className="portfolio-nav-disclosure" ref={disclosure} onKeyDown={event => {
-          if (event.key !== "Escape" || !event.currentTarget.open) return;
-          closeMenu();
-          event.currentTarget.querySelector("summary").focus();
-        }}>
-          <summary><Menu size={17} aria-hidden="true"/> Menu</summary>
-          <div className="portfolio-nav-panel">{links}</div>
-        </details>
+        <NavLink to="/" end>Home</NavLink>
+        <Link to="/#contact" aria-current={pathname === "/" && hash === "#contact" ? "location" : undefined}>Connect</Link>
+        <a href={resume} target="_blank" rel="noopener noreferrer">
+          Resume <ArrowUpRight size={14} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span>
+        </a>
         {interactive && <ThemeSwitch/>}
       </nav>
     </header>
