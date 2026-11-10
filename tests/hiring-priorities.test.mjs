@@ -88,10 +88,10 @@ test("UIQA and document routes have accurate independent canonical and social me
   assert.match(meta.title, /UIQA/);
   assert.doesNotMatch(meta.title, /Game Store/);
   assert.match(meta.description, /CLI and GitHub Action/);
-  assert.equal(meta.canonical, "https://insanlab.vercel.app/uiqa");
-  assert.match(meta.image, /^https:\/\/insanlab\.vercel\.app\//);
+  assert.equal(meta.canonical, "https://insanbuilds.vercel.app/uiqa");
+  assert.match(meta.image, /^https:\/\/insanbuilds\.vercel\.app\//);
   assert.match(pageMetadata("/design-systems/accelbyte/components/button").title, /AccelByte Button/);
-  assert.equal(pageMetadata("/design-systems/accelbyte").canonical, "https://insanlab.vercel.app/design-systems/accelbyte/foundations");
+  assert.equal(pageMetadata("/design-systems/accelbyte").canonical, "https://insanbuilds.vercel.app/design-systems/accelbyte/foundations");
 });
 
 test("funnel payloads allow only fixed stages and destinations and never retain contact data", () => {

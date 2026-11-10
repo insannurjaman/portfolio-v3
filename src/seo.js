@@ -1,5 +1,5 @@
 import { SYSTEM_DOCS, docsTopics } from "./system-docs-data.js";
-export const SITE_ORIGIN = "https://insanlab.vercel.app";
+export const SITE_ORIGIN = "https://insanbuilds.vercel.app";
 export const SOCIAL_IMAGE = Object.freeze({
   url: `${SITE_ORIGIN}/social/insan-portfolio-16201396.png`,
   width: 1734, height: 907, type: "image/png",
