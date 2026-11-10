@@ -1,0 +1,137 @@
+const screen = (name, alt, caption) => ({ type: "image", src: `/media/halodish/${name}.png`, alt, caption });
+const h = text => ({ type: "h2", text });
+const p = text => ({ type: "p", text });
+const list = items => ({ type: "list", items });
+const pair = (images, caption) => ({ type: "image-group", images, caption });
+const storeLinks = [
+  { label: "Download on the App Store", href: "https://apps.apple.com/us/app/halodish-halal-vegan/id6575360757" },
+  { label: "Get it on Google Play", href: "https://play.google.com/store/apps/details?id=com.eftax.halodish" },
+];
+
+// Scoped extension of the existing portfolio. Rationale interprets actual Figma
+// screens and verified store listings; it does not invent research or impact.
+export const haloDishPages = {
+  "/halodish-apps": {
+    path: "/halodish-apps",
+    title: "HaloDish Apps",
+    category: "Shipped iOS & Android · Food & travel",
+    designCase: true,
+    mobileCase: true,
+    sourceUrl: "https://www.figma.com/design/GSjswsDXzXmFnXCtaPKXIu/Personal-Project?node-id=14-100977",
+    metadata: { role: "Product Designer", practice: "Mobile flows · UX · UI", label: "Status", value: "Published · iOS & Android" },
+    appLinks: storeLinks,
+    body: ["A published iOS and Android app connecting place discovery, product information, and ingredient-photo checks for people exploring halal, vegan, and vegetarian options in Japan."],
+    images: [screen("home", "HaloDish home screen with nearby restaurants and prayer spaces")],
+    coverGallery: [
+      screen("home", "HaloDish home screen", "Discover places"),
+      screen("food-check", "HaloDish ingredient-photo entry screen", "Prepare a check"),
+      screen("scan-uncertain", "HaloDish scan result with a doubtful status", "Inspect the result"),
+    ],
+    story: [
+      h("The project at a glance"),
+      p("HaloDish brings several everyday tasks into a mobile experience: finding restaurants and prayer spaces, exploring stores and products, inspecting ingredient information, and returning to saved choices. The supplied design uses Osaka and Japanese-language products as its example setting."),
+      p("My role was Product Designer. The documented work includes onboarding, home and search routes, list and map discovery, filters, place details, product information, a photo-check flow, result states, a points wallet, purchase states, editorial content, and profile destinations."),
+      p("HaloDish is available on the App Store and Google Play, published by eftax Co., Ltd. This case study combines the supplied Figma work with verified publication evidence. The design screens may differ from the latest app release, and their sample prices, balances, ratings, and dietary labels are not live data. No usability results or impact metrics are attributed to this work."),
+      h("The design challenge"),
+      p("The central challenge is connecting discovery with enough information to support a considered choice. Finding a nearby place is different from inspecting a packaged product, and both are different from photographing an ingredient list. The interface needs clear routes between those tasks without implying that every green label represents the same kind of evidence."),
+      list([
+        "Make restaurants, prayer spaces, stores, and products discoverable from one starting point.",
+        "Support both visual comparison and geographic exploration.",
+        "Explain what a photo check needs before asking someone to use the camera.",
+        "Present uncertain results as a distinct state rather than forcing a positive or negative answer.",
+        "Expose the points cost and purchase confirmation before commitment.",
+      ]),
+      h("A clear entry into a broad product"),
+      p("The onboarding sequence introduces places and the Food Check as separate capabilities. Skip and step indicators let the design explain the concept without making every introductory screen an unavoidable gate. The main navigation then provides home/explore, products, checking, tourist-spot, and profile destinations."),
+      pair([
+        screen("onboarding-places", "HaloDish onboarding introducing restaurants, prayer spaces, and stores", "Place discovery introduction"),
+        screen("onboarding-check", "HaloDish onboarding explaining ingredient-photo checks", "Food Check introduction"),
+      ], "Two actual onboarding screens establish different tasks within the same app."),
+      { type: "flow", label: "HaloDish's documented place-discovery journey", items: ["Choose a location", "Browse or search", "Filter the options", "Inspect the details", "Save or navigate"] },
+      p("The published listings describe restaurant discovery, ingredient checking, product lookup, prayer spaces and stores, and tourist-spot exploration. The Figma examples below focus on the flows documented in the supplied design file."),
+      h("Discovery through lists, maps, and filters"),
+      p("The restaurant list puts images, distance, opening state, ratings, and condition labels next to each place. The map view keeps the same search and category structure but changes the comparison from a vertical list to spatial clusters. Switching presentation is a change of exploration mode, not a move to a separate product."),
+      pair([
+        screen("restaurant-list", "HaloDish restaurant results in list mode", "Compare in a list"),
+        screen("restaurant-map", "HaloDish restaurant results in map mode", "Explore geographically"),
+      ], "List and map views share a recognizable search and category header."),
+      p("Filters distinguish sorting, radius, place details, conditions, cuisines, and payment methods. Reset and Apply separate editing criteria from committing them. The visible categories also expose a data-model question: certification, availability of options, ownership, and facilities are different attributes and need different supporting evidence."),
+      screen("filters", "HaloDish filters with sorting, distance, conditions, cuisines, and payment methods", "Grouped criteria and an explicit Apply action make the filter surface a focused task."),
+      h("Information behind a place or product"),
+      p("Place details expand a result into photos, condition indicators, Overview/Menu/Reviews tabs, quick information, location actions, and opening hours. The overview includes a dish-specific note rather than relying only on restaurant-wide labels. Suggest edit introduces a correction route for information that may change."),
+      pair([
+        screen("place-details", "HaloDish place overview with conditions, quick information, location, and hours", "Place overview"),
+        screen("product-details", "HaloDish packaged-product details with ingredients, notes, shops, and disclaimer", "Packaged-product information"),
+      ], "The two detail surfaces answer different questions: visiting a place and inspecting a product. Open either source screen for its full content."),
+      p("The packaged-product design includes ingredients, notes, shop links, a disclaimer, and a last-updated field. These create space for explaining provenance and limitations. Maintaining consistency between ingredient text, dietary labels, and certification evidence is an important ongoing content-quality requirement; the sample screenshots are not classification validation."),
+      h("Make the labeling limits inspectable"),
+      p("The source includes a dedicated How We Label Products page. It separates its labeling approach, definitions, limitations, and user responsibility. In particular, the design copy distinguishes listed-ingredient review from manufacturing, supply-chain, and cross-contamination verification."),
+      screen("label-policy", "HaloDish labeling explanation with approach, definitions, and limitations", "The app's own explanation is preserved as a design artifact, not endorsed as a certification or food-safety standard."),
+      p("This is a crucial trust boundary for the product. A badge should communicate both its meaning and the basis for displaying it. The case study presents the labeling information architecture, not an independent verification of the example products."),
+      h("Guide the ingredient-photo task"),
+      p("Food Check tells the user to photograph written ingredients rather than a barcode. The entry screen pairs correct/incorrect examples with camera and upload actions, and displays the points cost beside each action. That guidance sits before capture, where a misunderstanding can still be prevented."),
+      pair([
+        screen("food-check", "HaloDish Food Check entry showing ingredient versus barcode guidance and action costs", "Prepare the input"),
+        screen("photo-confirm", "HaloDish captured ingredient photo with retake and confirm controls", "Review the captured image"),
+      ], "Input guidance and a retake/confirm step give the photo flow explicit decision points."),
+      p("The documented sequence proceeds through capture, ingredient cropping, analysis, and a result. The analysis screen communicates ongoing work, while the later screens expose the detected ingredient list. Food Checker is a listed feature of the published app; these Figma states illustrate its design without establishing model accuracy or performance."),
+      screen("processing", "HaloDish analysis-in-progress screen", "A dedicated processing state bridges the photo task and its result."),
+      h("Treat uncertainty as a real result"),
+      p("The result designs separate halal and vegan status, then list the detected ingredients. Alongside a positive example, the file includes a Doubtful result with annotations on specific ingredients. That distinction is important: missing or ambiguous evidence is not the same as a confirmed match or mismatch."),
+      pair([
+        screen("scan-result", "HaloDish illustrative positive scan result with detected ingredients", "Example result structure"),
+        screen("scan-uncertain", "HaloDish doubtful scan result with ingredient-level annotations", "Explicit uncertainty"),
+      ], "Both are interface examples. The classifications are not independently validated, and the positive/uncertain screens are not accuracy-test results."),
+      p("The UX requirement is to make input quality, data provenance, ambiguity, and rechecking behavior understandable. Ingredient-level explanations matter because an uncertain result should not become an unexplained verdict. This remains an ongoing validation topic rather than a measured outcome claimed here."),
+      h("Connect the wallet to the task cost"),
+      p("The points wallet separates Earn, Spend, and History. Earning routes include check-ins, community contributions, and watching ads. The history design associates balance changes with actions and timestamps, while the Food Check entry reveals its cost before capture. Together they attempt to make the resource model visible rather than deducting points silently."),
+      pair([
+        screen("wallet", "HaloDish points wallet with check-in and contribution earning routes", "Earning routes"),
+        screen("wallet-history", "HaloDish points wallet history with earning and spending entries", "Action-based history"),
+      ], "Balances and rewards are example values. These frames are not financial records or evidence of actual transactions."),
+      p("The purchase design then shows a selected pack, a confirmation sheet with an order total and payment method, and a completion state with a receipt and route back to the wallet. The source also contains biometric, loading, and card-entry variants; this case study highlights the main decision and completion points."),
+      screen("buy-points", "HaloDish Buy Points screen with selectable packs and Continue action", "The selected pack precedes payment confirmation."),
+      pair([
+        screen("purchase-confirm", "HaloDish purchase-confirmation sheet with total and payment options", "Review the commitment"),
+        screen("purchase-complete", "HaloDish purchase-complete sheet with receipt and wallet action", "Confirm the outcome"),
+      ], "The published Google Play listing identifies in-app purchases. These screens document the design states, not a payment-security audit or current pricing."),
+      h("Return paths, editorial help, and empty states"),
+      p("Profile organizes reviews, place contributions, liked places, favorite products, and the food-profile entry. Saved products provide a direct return path to a prior choice, while the article-detail design supports a longer reading mode outside the result list."),
+      pair([
+        screen("profile", "HaloDish profile with reviews, contributions, saved places, and food-profile entry", "Profile destinations"),
+        screen("favorites", "HaloDish favorite-product collection", "A reusable collection"),
+      ], "Account activity and saved content have dedicated destinations rather than being buried in discovery."),
+      screen("article", "HaloDish editorial article detail with title, author, date, and body", "Editorial content is shown as an example reading surface; its dated venue recommendations are not current travel guidance."),
+      p("The source also includes a home state with no local restaurants, prayer spaces, or stores. Each empty collection names the missing content and suggests selecting another location, while product and editorial sections remain available. This documents one recovery route, not a complete set of offline or permission-error states."),
+      screen("empty-home", "HaloDish home screen with empty local results and another-location guidance", "Empty local collections retain the broader product context and a suggested recovery action."),
+      h("A shipped product that continues to evolve"),
+      { type: "h5", text: "Reported landing-page acquisition outcome" },
+      p("Alongside the app work, I designed and implemented the HaloDish landing page. I report a 1,296% increase in user-acquisition conversion rates for that landing-page work."),
+      p("This is a reported marketing outcome for the landing page, not an app-engagement, retention, or download-growth metric. Baseline rates, measurement periods, and underlying analytics are not included in this case study."),
+      p("The confirmed delivery outcome is public availability on iOS and Android. Visitors can move from this design story to the published product through the store links below."),
+      { type: "links", links: storeLinks },
+      p("The App Store release history describes continued changes to home and Explore, search, products, points, profile, sign-in, and article readability. It also records a newer fallback that shows popular places outside supported locations. That is evidence of ongoing product iteration, not proof that every archived Figma screen matches the current release, or that each update can be attributed to this design work."),
+      h("Design decisions and trade-offs"),
+      { type: "decisions", rows: [
+        ["List and map modes", "Support detail comparison and geographic exploration without changing the search model.", "Shared headers and category controls across both result views."],
+        ["Layered information", "Keep discovery concise while exposing detailed notes and limitations on demand.", "Place/product detail surfaces and a separate labeling-policy page."],
+        ["Input before analysis", "Explain the needed photo and give the user a correction point.", "Ingredient-versus-barcode examples and retake/confirm controls."],
+        ["Explicit uncertainty", "Avoid equating ambiguous evidence with a definitive result.", "Doubtful status and ingredient-level annotations."],
+        ["Visible cost and confirmation", "Expose the task cost and purchase commitment before proceeding.", "Point-cost labels, pack selection, confirmation, receipt, and history."],
+      ] },
+      p("The main trade-off is breadth versus clarity. HaloDish connects lifestyle discovery, ingredient checks, community activity, and a resource model; those relationships are useful only if the primary task remains easy to find. Contribution moderation also needs to distinguish participation from information verification."),
+      h("Delivery, reflection, and ongoing validation"),
+      p("HaloDish has shipped on both major mobile platforms. The supplied design work documents connected discovery and checking flows, inspectable information, uncertainty states, wallet entry points, and purchase confirmations. Publication is verified, while the landing-page acquisition result is reported separately above. Classification accuracy and app-usability improvements are not established by these outcomes."),
+      p("The following is a proposed ongoing validation plan, not research already conducted:"),
+      list([
+        "Test whether first-time users can distinguish place discovery, product lookup, and photo checking.",
+        "Evaluate switching between list and map, applying/resetting filters, and recovering from empty results.",
+        "Check comprehension of label provenance, certification examples, disclaimers, and doubtful results.",
+        "Validate photo-input guidance and design unreadable, unsupported-language, denied-permission, and failed-analysis states.",
+        "Test understanding of points costs, depleted balances, purchase cancellation, failure, and duplicate confirmation.",
+        "Continue reviewing source-data consistency, contribution moderation, accessibility, and localization as the app evolves.",
+      ]),
+      p("The core takeaway is that a helpful lifestyle product needs more than discovery: it must make the information behind a choice visible, distinguish uncertainty, and explain the consequences of an action. HaloDish brings those moments into a shipped experience, with continued refinement visible in its public release history."),
+    ],
+  },
+};

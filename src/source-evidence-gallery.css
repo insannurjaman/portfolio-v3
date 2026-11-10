@@ -1,0 +1,7 @@
+.source-evidence-gallery { margin-block: 28px; border-block: 1px solid var(--line); padding-block: 8px; }
+.source-evidence-gallery summary { cursor: pointer; padding-block: 16px; min-height: 44px; font-weight: 500; line-height: 1.5; }
+.source-evidence-gallery summary>span { display: block; padding-left: 18px; margin-top: 4px; color: var(--muted); font-size: 13px; font-weight: 400; }
+.source-evidence-gallery summary:focus-visible { outline: 2px solid var(--action); outline-offset: 4px; }
+.source-evidence-gallery>p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.source-evidence-gallery img { width: 100%; height: auto; }
+.source-evidence-gallery figcaption a { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; color: var(--action); text-decoration: underline; text-underline-offset: 4px; }

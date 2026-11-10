@@ -1,0 +1,44 @@
+/* Scoped reading layer for evidence-led case studies. The incumbent
+   portfolio and full-proportion source screens remain the visual authority. */
+.case-reading-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 28px; margin-top: 24px; }
+.case-reading-actions .case-source-link { margin: 0; }
+.case-reading-actions a { min-height: 44px; font-size: 15px; line-height: 1.5; }
+.case-brief { margin: 0; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px 36px; }
+.case-brief > div { min-width: 0; }
+.case-brief dt { margin-bottom: 10px; color: var(--text); font-size: 17px; line-height: 1.5; font-weight: 500; }
+.case-brief dd { margin: 0; color: var(--body-copy); font-size: 16px; line-height: 1.75; }
+.case-brief-note { margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--body-copy); font-size: 14px; line-height: 1.7; }
+.case-key-decisions { list-style: none; padding: 0; margin: 0; }
+.case-key-decisions > li { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.case-key-decisions > li:first-child { padding-top: 0; }
+.case-key-decisions h3 { margin: 0 0 12px; color: var(--text); font-size: 22px; line-height: 1.35; font-weight: 500; letter-spacing: -.02em; text-wrap: balance; }
+.case-key-decisions p { color: var(--body-copy); margin: 0 0 12px; font-size: 16px; line-height: 1.75; max-width: 70ch; }
+.case-key-decisions a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15px; line-height: 1.5; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgb(43 43 41 / .3); }
+.case-key-decisions a svg { flex-shrink: 0; }
+.case-key-decisions a:hover { text-decoration-color: currentColor; }
+.narrative-case .case-hero a:focus-visible,.case-key-decisions a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+.narrative-case .case-story aside { gap: 8px; }
+.narrative-case .case-story aside a { color: var(--body-copy); font-size: 13px; line-height: 1.45; min-height: 30px; }
+.narrative-case .case-story aside a:hover { color: var(--text); }
+.case-contents-label { font-size: 15px; line-height: 1.5; font-weight: 500; margin-bottom: 6px; }
+.case-executive-summary .case-brief > div:first-child { grid-column: 1 / -1; }
+.case-context-facts { margin-bottom: 28px; }
+.case-facts-stacked { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.case-impact-evidence { margin: 28px 0; }
+.case-impact-record { border-top: 1px solid var(--line); padding: 24px 0; }
+.case-impact-record h3 { color: var(--text); font-size: 20px; line-height: 1.4; margin: 0 0 20px; }
+.case-impact-record .case-brief dt { font-size: 14px; margin-bottom: 5px; }
+.case-impact-record .case-brief dd { font-size: 15px; }
+.narrative-case .source-subheading[id] { scroll-margin-top: 110px; }
+@media (max-width:620px) {
+  .case-brief { grid-template-columns: 1fr; gap: 24px; }
+  .case-brief-note { font-size: 14px; }
+  .case-key-decisions h3 { font-size: 21px; }
+  .case-reading-actions { gap: 4px 24px; }
+}
+.case-evidence-note { margin-block: 32px; padding-block: 24px; border-block: 1px solid var(--line); }
+.case-evidence-note summary { min-height: 44px; align-content: center; font: 400 24px/1.25 var(--font-display); cursor: pointer; }
+.case-evidence-note summary:focus-visible { outline: 2px solid var(--action); outline-offset: 4px; }
+.case-evidence-note[open] summary { margin-bottom: 16px; }
+.case-evidence-note p { max-width: 70ch; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.case-evidence-note p:last-child { margin-bottom: 0; }

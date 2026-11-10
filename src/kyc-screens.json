@@ -1,0 +1,209 @@
+{
+  "heuristics": {
+    "src": "/media/saphyte-kyc/heuristics.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Published heuristic review of the original Saphyte KYC interface",
+    "caption": "Heuristic Analysis: Saphyte KYC UI (Current Design and Flow)",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aNaO54hY3fkK5TGdPHbyoQ.png",
+    "sha256": "96a2b15c11fc858b4e0f8d06258308e644e58944599fab2056186a8c2b84d352"
+  },
+  "benchmark": {
+    "src": "/media/saphyte-kyc/benchmark.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Published comparison of Saphyte, Binance, and Wise verification experiences",
+    "caption": "Published comparison of Saphyte, Binance, and Wise verification experiences",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PVFLtpMdZcHAcz4r8ZbNkA.png",
+    "sha256": "7d9bdf83c7e8ae1b76e3f1c05ede7c19b4b7b97156c979f92f277c41c9c88b68"
+  },
+  "affinity": {
+    "src": "/media/saphyte-kyc/affinity.webp",
+    "width": 1400,
+    "height": 551,
+    "alt": "Affinity map grouping observed KYC problems into themes",
+    "caption": "Affinity Mapping",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SjXtEw9QDITlOLatT4bnlA.png",
+    "sha256": "82644874ab86bfa363a3cadd82767938d31f0f3dabe905c66492b8d245d73a3b"
+  },
+  "ideation": {
+    "src": "/media/saphyte-kyc/ideation.webp",
+    "width": 1400,
+    "height": 1129,
+    "alt": "Published ideation map for client and administrator verification tasks",
+    "caption": "Ideation",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*4klDpV5LclfeV34GDl7a0Q.png",
+    "sha256": "7708e42ea1bc3081f20585a3acf1534d85e9e9fbeb85a0a38af49f99346adbad"
+  },
+  "personas": {
+    "src": "/media/saphyte-kyc/personas.webp",
+    "width": 1400,
+    "height": 336,
+    "alt": "Design-persona artifact in the original KYC article",
+    "caption": "Design-persona artifact in the original KYC article",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ua8DUrGbxYgMC3KscFF5CQ.png",
+    "sha256": "290954bb4938c3930e1739549320171738122fd338d9e56961220a15b1ac0faf"
+  },
+  "client-wireframes": {
+    "src": "/media/saphyte-kyc/client-wireframes.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original client profile and verification wireframes",
+    "caption": "Sketch My Profile & KYC Page",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-XxmYfI_0mRIPX8Z36DK7Q.png",
+    "sha256": "7ed1b7650e5af8cd61deea58bbead91ac29a3edb4de447820906bfc2a2414508"
+  },
+  "admin-wireframes": {
+    "src": "/media/saphyte-kyc/admin-wireframes.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original administrator queue and document review wireframes",
+    "caption": "Sketch KYC Management & Document Verification Details Page",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*EUvrlyvS5TRIfD8t-zlv0g.png",
+    "sha256": "786721226011f826e84bdc141fd82172abbef1e4003987be25c3bcddf1e94a06"
+  },
+  "profile-pending": {
+    "src": "/media/saphyte-kyc/profile-pending.webp",
+    "width": 1400,
+    "height": 1111,
+    "alt": "Original Saphyte design: My Profile - Pending",
+    "caption": "My Profile - Pending",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*dDpTbX3Zhej4l83otxA5vA.png",
+    "sha256": "9a8cc053bd034b4209662cfae10518953ad9abbd7dcb32a83c524f3000888ed0"
+  },
+  "profile-rejected": {
+    "src": "/media/saphyte-kyc/profile-rejected.webp",
+    "width": 1400,
+    "height": 1111,
+    "alt": "Original Saphyte design: My Profile - Rejected",
+    "caption": "My Profile - Rejected",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*59nGIpd24ismXRLi2NrwzQ.png",
+    "sha256": "81eb082774c2037bbacdb9cc91e73991689f40f6f678a60fdd3873c188b00868"
+  },
+  "profile-approved": {
+    "src": "/media/saphyte-kyc/profile-approved.webp",
+    "width": 1400,
+    "height": 821,
+    "alt": "Original Saphyte design: My Profile - Approved",
+    "caption": "My Profile - Approved",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6Nk7kqtyURmnXPDBI8E-tQ.png",
+    "sha256": "4c385b712bbe17a0314e9c8630a0a7f60e93e3dc89ac45a525b4852144ae59f9"
+  },
+  "required-pending": {
+    "src": "/media/saphyte-kyc/required-pending.webp",
+    "width": 1400,
+    "height": 1571,
+    "alt": "Original Saphyte design: KYC - Required Docs - Pending",
+    "caption": "KYC - Required Docs - Pending",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*HEAo4WjYNlu0dCOL8jE60g.png",
+    "sha256": "9027d7ac72e328afe8f2338cc274ad0b05dfde553c1cc9706e1fc3e73124e940"
+  },
+  "upload-empty": {
+    "src": "/media/saphyte-kyc/upload-empty.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: Upload Front Document",
+    "caption": "Upload Front Document",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*masObbQjpJkwoMRNUX5LJw.png",
+    "sha256": "54bb2326e5be715b94177dbd69d9a0cc9979e7a4736accee40c4f3e68855d567"
+  },
+  "upload-ready": {
+    "src": "/media/saphyte-kyc/upload-ready.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: Upload Front Document",
+    "caption": "Upload Front Document",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cz1_tY-j9plktgyb_7D0wQ.png",
+    "sha256": "907a5977e6aa13ca9584b1600abd7400f10cc3f506e50b13d311201e677ca24f"
+  },
+  "optional-pending": {
+    "src": "/media/saphyte-kyc/optional-pending.webp",
+    "width": 1400,
+    "height": 2254,
+    "alt": "Original Saphyte design: KYC - Optional Docs - Pending",
+    "caption": "KYC - Optional Docs - Pending",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VliTNeKphyqv04e8_PM6-g.png",
+    "sha256": "4b34938d844df35777f55363b396f20a4e3e6f678d6f017a118c4530704ade20"
+  },
+  "required-rejected": {
+    "src": "/media/saphyte-kyc/required-rejected.webp",
+    "width": 1400,
+    "height": 1582,
+    "alt": "Original Saphyte design: KYC - Required Docs - Rejected",
+    "caption": "KYC - Required Docs - Rejected",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*AhC83fz911BZ5ex7G64elA.png",
+    "sha256": "3487cbe67a8aeab6630713ee20798262faec812262e56650a72b7526e9921ffd"
+  },
+  "required-approved": {
+    "src": "/media/saphyte-kyc/required-approved.webp",
+    "width": 1400,
+    "height": 1559,
+    "alt": "Original Saphyte design: KYC - Required Docs - Approved",
+    "caption": "KYC - Required Docs - Approved",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VNprbEhuyaULT_O62JnMLA.png",
+    "sha256": "8dcc49747902e7053b74d3f8a898194a7ef3305b710a6b78a6641bdb9fdfe7f9"
+  },
+  "admin-queue": {
+    "src": "/media/saphyte-kyc/admin-queue.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: KYC Management",
+    "caption": "KYC Management",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*rxa6-jDfPb1Glw-aCQfKWw.png",
+    "sha256": "4af115b59a3dc5cdbde957cac5b4a04ff4979b2f8cb6cc5bb76d4112f0e6e527"
+  },
+  "admin-details": {
+    "src": "/media/saphyte-kyc/admin-details.webp",
+    "width": 1400,
+    "height": 2358,
+    "alt": "Original Saphyte design: KYC Management - Document Verification Details",
+    "caption": "KYC Management - Document Verification Details",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*VKapM6DFYY76tfrPqxxw5w.png",
+    "sha256": "d3fcf17359857b040667f77aff220450d93cde32a77ebc82520753fdd24bf884"
+  },
+  "reject-confirmation": {
+    "src": "/media/saphyte-kyc/reject-confirmation.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: Reject Document Confirmation",
+    "caption": "Reject Document Confirmation",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*xUgaG64BFvX6EtvvIgGhZQ.png",
+    "sha256": "456c2d0940f25a224bdf58f8f5a593d8fe597144c2eb5ba5a38a0958c20557cc"
+  },
+  "approve-confirmation": {
+    "src": "/media/saphyte-kyc/approve-confirmation.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: Approve Confirmation Dialog",
+    "caption": "Approve Confirmation Dialog",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ZrYWmNuwyPd8qpybGN43lA.png",
+    "sha256": "bd5074ed952dc0a5a99039c2c9299137c98ef072f4f99ea01a23d36edff4025a"
+  },
+  "approval-success": {
+    "src": "/media/saphyte-kyc/approval-success.webp",
+    "width": 1400,
+    "height": 996,
+    "alt": "Original Saphyte design: Document Approved Successfully",
+    "caption": "Document Approved Successfully",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bkpqhnf-GLieRcMXWjszog.png",
+    "sha256": "f596fd3f44e0a06e1502fd96543e6b9276eeec6cef9b297ca3f8cd9bba8c68c7"
+  },
+  "admin-rejected": {
+    "src": "/media/saphyte-kyc/admin-rejected.webp",
+    "width": 1400,
+    "height": 2358,
+    "alt": "Original Saphyte design: Rejected Global Status",
+    "caption": "Rejected Global Status",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*88YOuyFJXCcvaSkhHcq6mQ.png",
+    "sha256": "adff279960567b64cec3305a713c240b07ed76cd4773fb43cecdfdb9fbbcd09d"
+  },
+  "sumsub-approved": {
+    "src": "/media/saphyte-kyc/sumsub-approved.webp",
+    "width": 1400,
+    "height": 1038,
+    "alt": "Original Saphyte design: Sumsub Result Details Page - Approved",
+    "caption": "Sumsub Result Details Page - Approved",
+    "sourceUrl": "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cnE5BwSvJrciYkgJXeRl8w.png",
+    "sha256": "889061478638310d844414a3db4cf193523ffc7dedbe6b7d4f17bfc76c54332e"
+  }
+}

@@ -1,0 +1,11 @@
+/* Saphyte source evidence extends the incumbent case-study reading system. */
+.stage-client-portal { background: var(--panel); }
+.stage-client-portal .stage-window-bar { background: var(--line); }
+.portal-case .system-preview-media { max-width: 100%; }
+.portal-case.system-case .case-cover img { max-width: 457px; margin-inline: auto; }
+.portal-case .story-image-group .screen-preview { background: var(--bg); }
+.portal-case.system-case .story-image-group > div { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.portal-token-map code { overflow-wrap: anywhere; }
+.portal-token-map > p { color: var(--muted); font-size: var(--type-caption); line-height: 1.7; margin-top: 16px; }
+.ds-feature + .ds-feature { padding-top: 40px; border-top: 1px solid var(--line); }
+@media (max-width:620px) { .portal-case.system-case .story-image-group > div { grid-template-columns: 1fr; } .portal-case.system-case .story-image-group > div > a { width: 100%; } }

@@ -1,0 +1,57 @@
+/* A quiet moving bookmark: chapter continuity, not a content entrance. */
+.case-page .case-story > .case-chapter-nav {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  display: block;
+  min-width: 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  --reading-progress: 0;
+  --chapter-offset: 0px;
+}
+.case-chapter-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; font: 500 15px/1.5 var(--font-sans); }
+.case-chapter-count { font: 400 12px/1.5 var(--font-sans); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.case-chapter-links { position: relative; max-height: calc(100svh - 200px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding-inline: 1px; }
+.case-page .case-story .case-chapter-links a { position: relative; display: flex; gap: 14px; align-items: center; min-height: 44px; height: 44px; padding: 6px 10px 6px 0; color: var(--muted); font: 400 13px/1.5 var(--font-sans); text-decoration: none; transition: color 180ms ease; }
+.case-page .case-story .case-chapter-links a:hover { color: var(--action); }
+.case-page .case-story .case-chapter-links a[aria-current] { color: var(--action); font-weight: 500; }
+.case-chapter-links a:focus-visible { outline-offset: -2px; }
+.case-chapter-track { position: absolute; left: 4px; top: 22px; bottom: 22px; width: 1px; background: var(--line); }
+.case-chapter-track > span { display: block; width: 100%; height: 100%; background: var(--action); transform: scaleY(var(--chapter-progress, 0)); transform-origin: top; }
+.case-chapter-dot { width: 7px; height: 7px; flex: 0 0 7px; border: 1px solid var(--line); background: var(--bg); border-radius: 50%; transition: background-color 180ms ease, border-color 180ms ease; }
+.case-chapter-links a[data-read] .case-chapter-dot { background: var(--action); border-color: var(--action); }
+.case-chapter-links a[aria-current] .case-chapter-dot { border-color: var(--action); background: var(--action); }
+.case-chapter-marker { position: absolute; top: 0; left: 16px; right: 0; height: 44px; border-radius: 5px; background: rgb(195 217 211 / .42); transform: translateY(var(--chapter-offset)); pointer-events: none; }
+.case-chapter-toggle,.case-chapter-mobile-progress { display: none; }
+.case-page .source-heading { scroll-margin-top: 32px; }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .case-page .case-story { grid-template-columns: 180px minmax(0,1fr); gap: 32px; }
+}
+@media (max-width: 900px) {
+  .case-page .case-story { grid-template-columns: minmax(0,1fr); gap: 28px; }
+  .case-page .case-story > .case-chapter-nav { top: 82px; z-index: 60; padding: 0; border-top: 0; margin-inline: -20px; background: var(--bg); }
+  .case-chapter-heading { display: none; }
+  .case-chapter-toggle { width: 100%; min-height: 68px; display: flex; justify-content: space-between; align-items: center; gap: 16px; border: 0; padding: 10px 20px; background: var(--bg); text-align: left; cursor: pointer; }
+  .case-chapter-toggle > span:first-child { min-width: 0; display: grid; gap: 2px; }
+  .case-chapter-mobile-label { font: 400 12px/1.5 var(--font-sans); color: var(--muted); }
+  .case-chapter-mobile-title { font: 500 15px/1.5 var(--font-sans); color: var(--action); }
+  .case-chapter-toggle-end { display: flex; align-items: center; gap: 12px; }
+  .case-chapter-toggle svg { transition: transform 200ms ease; }
+  .case-chapter-nav.is-open .case-chapter-toggle svg { transform: rotate(180deg); }
+  .case-chapter-links { display: none; position: absolute; inset: 68px 0 auto; padding: 12px 20px 16px; max-height: calc(100svh - 160px); background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: 0 12px 20px rgb(43 43 41 / .06); }
+  .case-chapter-nav.is-open .case-chapter-links { display: block; }
+  .case-chapter-track { left: 24px; top: 34px; bottom: 38px; }
+  .case-chapter-marker { top: 12px; left: 36px; right: 20px; }
+  .case-page .case-story .case-chapter-links a { font-size: 14px; }
+  .case-chapter-mobile-progress { display: block; height: 2px; background: var(--line); }
+  .case-chapter-mobile-progress > span { display: block; height: 100%; background: var(--action); transform: scaleX(var(--reading-progress)); transform-origin: left; }
+  .case-page .source-heading { scroll-margin-top: 68px; }
+  .case-chapter-toggle:focus-visible { outline-offset: -4px; }
+}
+@media (max-width: 809px) {
+  .case-page .case-story > .case-chapter-nav { top: 62px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-chapter-track > span,.case-chapter-marker,.case-chapter-toggle svg,.case-chapter-dot,.case-page .case-story .case-chapter-links a { transition: none; }
+}

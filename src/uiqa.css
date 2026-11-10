@@ -1,0 +1,40 @@
+.uiqa-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,90px);align-items:center;background:var(--panel);border-block:1px solid var(--line)}
+.uiqa-feature h2{font-size:clamp(58px,7vw,92px);line-height:1;letter-spacing:-.035em;font-weight:500;margin:0 0 20px}
+.uiqa-feature-copy>p{font-size:clamp(21px,2.2vw,30px);line-height:1.3;letter-spacing:-.02em;max-width:24ch;color:var(--text)}
+.uiqa-feature-meta{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--body-copy);font-size:13px;line-height:1.6;margin:22px 0 28px}
+.uiqa-feature-use>p{font-size:18px;color:var(--body-copy);margin:0 0 18px}
+.uiqa-feature-use>.text-link{margin-top:26px}
+.uiqa-command{position:relative;display:flex;align-items:center;gap:14px;background:var(--panel);border-radius: 0;padding:19px 18px;color:var(--text);min-width:0}
+.uiqa-command code{font:13px/1.8 "DM Mono",monospace;overflow-wrap:anywhere;flex:1;min-width:0;user-select:all}
+.uiqa-command button{width:36px;height:36px;display:grid;place-items:center;flex:none;background:none;border:1px solid var(--line);border-radius: 0;color:inherit;cursor:pointer;transition:background .2s}
+.uiqa-command button:hover{background:var(--panel)}.uiqa-command button:active{transform:scale(.96)}
+.uiqa-copy-status{position:absolute;top:100%;left:0;max-width:100%;font-size:12px;line-height:1.5;color:var(--body-copy);padding-top:5px}
+.uiqa-intro{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,5vw,72px);align-items:center;padding-top:132px;padding-bottom:66px}
+.uiqa-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--body-copy);margin-bottom:26px}
+.uiqa-intro h1{font-size:clamp(68px,7vw,96px);font-weight:500;line-height:1;letter-spacing:-.035em;margin:0 0 20px}
+.uiqa-lead{font-size:clamp(25px,2.6vw,37px);letter-spacing:-.025em;line-height:1.16;color:var(--text)!important;margin:0 0 16px!important;max-width:18ch}
+.uiqa-intro-copy>p:not(.uiqa-lead){font-size:17px;line-height:1.65;color:var(--body-copy);max-width:47ch}
+.uiqa-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px 25px;margin:26px 0}
+.uiqa-actions .text-link,.uiqa-feature .text-link{display:inline-flex;align-items:center;gap:9px;font-size:14px}
+.uiqa-intro-copy>.uiqa-command{margin-top:25px}
+.uiqa-spotlight{background:var(--panel);border:1px solid var(--line);border-radius: 0;overflow:hidden}
+.uiqa-rule-tabs{display:flex;border-bottom:1px solid var(--line);padding:5px;gap:4px}
+.uiqa-rule-tabs button{flex:1;min-width:0;font-size:12px;line-height:1.3;padding:13px 6px;border:0;border-radius: 0;background:transparent;color:var(--body-copy);cursor:pointer;transition:background .2s,color .2s}
+.uiqa-rule-tabs button[aria-selected="true"]{background:#f0eee8;color:#09090a}.uiqa-rule-tabs button:not([aria-selected="true"]):hover{background:var(--panel);color:var(--text)}
+.uiqa-rule-heading{padding:25px 25px 20px;display:flex;gap:14px;align-items:baseline}.uiqa-rule-heading>span{font:12px "DM Mono",monospace;color:var(--action);flex:none}.uiqa-rule-heading h2{font-size:22px;font-weight:500;line-height:1.25;letter-spacing:-.02em;margin:0}
+.uiqa-spotlight pre,.uiqa-command-stack pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.8 "DM Mono",monospace;color:var(--text);background:var(--panel);padding:24px 25px}
+.uiqa-rule-explanation{margin:0;padding:24px 25px;display:grid;gap:18px}.uiqa-rule-explanation dt{color:var(--text);font-size:13px;font-weight:500;margin-bottom:7px}.uiqa-rule-explanation dd{font-size:14px;line-height:1.65;margin:0;color:var(--body-copy)}
+.uiqa-example-note{font-size:11px;line-height:1.6;color:var(--body-copy);padding:0 25px 22px;margin:0}.uiqa-example-note a{display:inline-flex;gap:4px;align-items:center;text-decoration:underline;text-underline-offset:3px}
+.uiqa-page h2{font-weight:500;letter-spacing:-.03em;line-height:1.14;text-wrap:balance}
+.uiqa-context,.uiqa-quickstart{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,90px);border-top:1px solid var(--line)}
+.uiqa-context h2,.uiqa-quickstart h2,.uiqa-capabilities>h2,.uiqa-boundaries>h2{font-size:clamp(32px,3.5vw,48px);margin:0 0 25px}
+.uiqa-context p,.uiqa-quickstart p,.uiqa-boundaries>p{font-size:17px;line-height:1.75;color:var(--body-copy);max-width:70ch;margin:0 0 22px}
+.uiqa-context .text-link,.uiqa-quickstart .text-link,.uiqa-capabilities .text-link{font-size:14px;display:inline-flex;gap:9px;align-items:center}
+.uiqa-capabilities{background:var(--panel)}.uiqa-capabilities>dl{margin:28px 0 32px}
+.uiqa-capabilities>dl>div{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:30px;border-bottom:1px solid var(--line);padding:26px 0}
+.uiqa-capabilities dt{font-size:24px;line-height:1.3;letter-spacing:-.02em}.uiqa-capabilities dd{font-size:17px;line-height:1.75;color:var(--body-copy);margin:0;max-width:55ch}
+.uiqa-command-stack h3{font-size:15px;font-weight:500;margin:0 0 12px}.uiqa-command-stack h3:not(:first-child){margin-top:40px}.uiqa-command-stack pre{border-radius: 0}.uiqa-command-stack>a{display:inline-flex;gap:8px;align-items:center;font-size:13px;text-decoration:underline;text-underline-offset:4px;margin-top:18px}
+.uiqa-boundaries{border-top:1px solid var(--line)}.uiqa-boundaries>.uiqa-source-note{font-size:12px;margin-top:32px;line-height:1.6}
+@media(max-width:900px){.uiqa-intro{grid-template-columns:1fr;padding-top:116px}.uiqa-intro-copy{max-width:650px}.uiqa-spotlight{max-width:700px}.uiqa-feature,.uiqa-context,.uiqa-quickstart{grid-template-columns:1fr;gap:35px}.uiqa-feature-use{max-width:700px}}
+@media(max-width:620px){.uiqa-intro{padding-top:102px;padding-bottom:52px}.uiqa-intro h1{font-size:68px}.uiqa-lead{font-size:29px;max-width:20ch}.uiqa-intro-copy>p:not(.uiqa-lead){font-size:16px}.uiqa-actions{gap:20px}.uiqa-rule-heading{padding:22px 18px 18px;display:block}.uiqa-rule-heading h2{font-size:22px;margin-top:10px}.uiqa-rule-tabs button{font-size:11px}.uiqa-spotlight pre,.uiqa-command-stack pre{font-size:12px;padding:22px 18px}.uiqa-rule-explanation{padding:22px 18px}.uiqa-example-note{padding:0 18px 22px;font-size:12px}.uiqa-command{padding:16px 14px;gap:10px}.uiqa-command code{font-size:12px}.uiqa-feature h2{font-size:64px}.uiqa-feature-copy>p{font-size:24px}.uiqa-capabilities>dl>div{grid-template-columns:1fr;gap:12px}.uiqa-capabilities dt{font-size:22px}.uiqa-context p,.uiqa-quickstart p,.uiqa-boundaries>p,.uiqa-capabilities dd{font-size:16px}.uiqa-back{margin-bottom:22px}}
+@media(prefers-reduced-motion:reduce){.uiqa-rule-tabs button,.uiqa-command button{transition:none;transform:none!important}}

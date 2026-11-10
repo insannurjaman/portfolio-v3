@@ -1,0 +1,83 @@
+/* Owner-approved clear hero composition, 4 November 2026.
+   Keep the original footage at full opacity; move the composition instead
+   of fading the subject into an ivory layer. No filter or quality upscaling. */
+.editorial-home .editorial-hero[data-hero-composition="clear"] {
+  background: #f8eedf;
+}
+
+.editorial-hero[data-hero-composition="clear"] .editorial-hero-art {
+  mask-image: none;
+  inset: 0 -20% 0 20%;
+}
+
+.editorial-hero[data-hero-composition="clear"] .hero-halftone {
+  display: none;
+}
+
+.editorial-home .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy {
+  max-width: none;
+}
+
+.editorial-home .editorial-hero[data-hero-composition="clear"] h1 {
+  font-size: clamp(48px, 4.35vw, 76px);
+  max-width: 64%;
+}
+
+.editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p[data-hero-text-reveal="description"] {
+  max-width: min(460px, 44vw);
+}
+
+@media (max-width: 1099px) {
+  .editorial-home .editorial-hero[data-hero-composition="clear"] {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding-bottom: 40px;
+  }
+  .editorial-home .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy {
+    padding: 120px 20px 0;
+    width: 100%;
+    max-width: 740px;
+    margin-inline: auto;
+  }
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-art {
+    position: relative;
+    order: 2;
+    z-index: 0;
+    inset: auto;
+    width: min(700px, calc(100% - 40px));
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 32px auto 0;
+  }
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-art::before,
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-art::after {
+    content: none;
+  }
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-art :is(img, video) {
+    object-position: center;
+  }
+  .editorial-home .editorial-hero[data-hero-composition="clear"] h1 {
+    max-width: none;
+    font-size: 48px;
+  }
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p[data-hero-text-reveal="description"] {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 809px) {
+  .editorial-home .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy {
+    padding-top: 104px;
+  }
+}
+
+@media (max-width: 620px) {
+  .editorial-home .editorial-hero[data-hero-composition="clear"] h1 {
+    font-size: clamp(32px, 9.75vw, 48px);
+    line-height: 1.06;
+  }
+}

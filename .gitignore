@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env*
+.vercel/
+.DS_Store
+artifacts/
+.impeccable/
+.private/
+.cache/
+coverage/
+*.log

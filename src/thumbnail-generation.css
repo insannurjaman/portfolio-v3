@@ -1,0 +1,28 @@
+/* Progressive enhancement: native images are visible until registration. */
+[data-thumbnail-generation] { position: relative; isolation: isolate; }
+[data-thumbnail-phase]:not([data-thumbnail-phase="done"]) [data-thumbnail-source] { opacity: 0; }
+[data-thumbnail-phase]:not([data-thumbnail-phase="done"]) .portrait-original { visibility: hidden; }
+[data-thumbnail-phase]:not([data-thumbnail-phase="done"])::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: var(--bg, #fbfaf6);
+}
+[data-thumbnail-generation="dark"][data-thumbnail-phase]:not([data-thumbnail-phase="done"])::before { background-color: #173e39; }
+.thumbnail-halftone { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.category-art-stage { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.category-art-stage .category-art { z-index: 0; }
+.category-tile[data-art-failed="true"] .category-art-stage { display: none; }
+@media(max-width:1023px),(hover:none),(pointer:coarse) {
+  .category-art-stage { position: relative; inset: auto; z-index: 0; width: 100%; aspect-ratio: 4/3; flex: none; }
+  .category-art-stage .category-art { width: 100%; height: 100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  [data-thumbnail-phase]:not([data-thumbnail-phase="done"]) [data-thumbnail-source] { opacity: 1; }
+  [data-thumbnail-phase]:not([data-thumbnail-phase="done"]) .portrait-original { visibility: visible; }
+  [data-thumbnail-phase]::before,.thumbnail-halftone { display: none; }
+}
+
+.image-reveal-frame { display: block; min-width: 0; overflow: clip; border-radius: 3px; }
+.case-cover-image>img { display: block; width: 100%; height: auto; max-height: 800px; object-fit: contain; background: var(--panel); border-radius: 5px; }
+
+.case-cover-image[data-thumbnail-phase]:not([data-thumbnail-phase="done"])::before,.story-visual .image-reveal-frame[data-thumbnail-phase]:not([data-thumbnail-phase="done"])::before,.screen-preview[data-thumbnail-phase]:not([data-thumbnail-phase="done"])::before { background: var(--panel); }
+.portal-case.system-case .case-cover-image { max-width: 457px; margin-inline: auto; }

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/design-systems/:system", "destination": "/design-systems/:system/foundations", "permanent": true },
+    { "source": "/quick-agent-system-hutzper", "destination": "/work", "permanent": false },
+    { "source": "/media/hutzper/:path*", "destination": "/work", "permanent": false }
+  ]
+}

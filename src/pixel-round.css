@@ -1,0 +1,76 @@
+/* Scoped reading refinement. Preserve the incumbent portfolio identity. */
+.pixel-round-case { --pr-copy: var(--body-copy); --pr-heading: clamp(32px,3.2vw,44px); --pr-body: 17px; }
+.pr-intro { padding: 136px var(--pad) 48px; display: grid; grid-template-columns: minmax(0,1.4fr) minmax(240px,.6fr); gap: 36px 64px; max-width: 1440px; margin-inline: auto; align-items: center; }
+.pr-intro-copy { min-width: 0; max-width: 740px; }
+.pr-intro h1 { margin: 0 0 16px; font-size: clamp(48px,5.3vw,72px); font-weight: 400; line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
+.pr-deck { margin: 0 0 20px; font-size: clamp(22px,2vw,28px); line-height: 1.4; letter-spacing: -.015em; }
+.pr-summary { font-size: var(--pr-body); line-height: 1.75; color: var(--pr-copy); max-width: 65ch; margin: 0; }
+.pr-actions,.pr-closing-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 28px; }
+.pr-primary { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 13px 20px; border-radius: 0; background: #f0eee8; color: #09090a; font-size: 15px; line-height: 1.5; }
+.pr-text-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; line-height: 1.5; text-decoration: underline; text-underline-offset: 5px; }
+.pixel-round-case a:focus-visible,.pr-mobile-contents summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; }
+.pr-primary:hover { background: #d9d6cf; }
+.pr-text-link:hover,.pr-contents a:hover,.pr-mobile-contents a:hover { color: var(--action); }
+.pr-product-mark { display: grid; justify-items: center; gap: 28px; padding: 20px 0; }
+.pr-icon { width: clamp(128px,12vw,172px); aspect-ratio: 1; transform: rotate(-7deg); }
+.pr-icon .pixel-round-icon { box-shadow: none; }
+.pr-sample { text-align: center; font: 13px/1.6 "DM Mono",monospace; color: var(--pr-copy); }
+.pr-sample p { margin: 8px 0; font-size: 28px; line-height: 1.4; color: var(--text); font-variant-numeric: tabular-nums; }
+.pr-sample p span { margin-inline: 14px; color: var(--focus); }
+.pr-sample small { font: 13px/1.6 var(--font-sans); }
+.pr-project-meta { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 20px; padding-top: 24px; margin: 0; border-top: 1px solid var(--line); }
+.pr-project-meta dt { margin: 0 0 8px; font-size: 13px; color: var(--pr-copy); line-height: 1.5; }
+.pr-project-meta dd { margin: 0; font-size: 16px; line-height: 1.6; }
+.pr-project-image { margin: 0 auto; padding: 0 var(--pad); max-width: 1440px; }
+.pr-project-image img { display: block; width: 100%; height: auto; border-radius: 0; }
+.pr-project-image figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; color: var(--pr-copy); font-size: 13px; line-height: 1.6; margin-top: 14px; }
+.pr-project-image figcaption a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; }
+.pr-story-layout { display: grid; grid-template-columns: 200px minmax(0,1fr); column-gap: clamp(36px,6vw,88px); padding: 64px var(--pad) 88px; max-width: 1360px; margin-inline: auto; align-items: start; }
+.pr-contents { position: sticky; top: 116px; }
+.pr-contents p { font-size: 14px; line-height: 1.5; margin: 0 0 14px; }
+.pr-contents a,.pr-mobile-contents a { display: flex; align-items: center; min-height: 44px; color: var(--pr-copy); font-size: 14px; line-height: 1.5; padding-block: 8px; }
+.pr-mobile-contents { display: none; }
+.pr-story { min-width: 0; max-width: 70ch; font-size: var(--pr-body); }
+.pr-story section { scroll-margin-top: 116px; }
+.pr-story section + section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+.pr-story h2 { font-size: var(--pr-heading); font-weight: 400; line-height: 1.17; letter-spacing: -.025em; text-wrap: balance; margin: 0 0 24px; }
+.pr-story h3 { font-size: 22px; font-weight: 500; line-height: 1.4; letter-spacing: -.015em; margin: 30px 0 12px; }
+.pr-story p,.pr-story li { color: var(--pr-copy); font-size: var(--pr-body); line-height: 1.78; letter-spacing: .005em; overflow-wrap: break-word; }
+.pr-story p { margin: 0 0 20px; }
+.pr-story ul { padding-left: 22px; margin: 20px 0 24px; }
+.pr-story li + li { margin-top: 10px; }
+.pr-story strong { font-weight: 500; color: var(--text); }
+.pr-story .pr-evidence-note { font-size: 14px; line-height: 1.7; margin-top: 24px; }
+.pr-decisions { list-style: none; padding: 0; margin: 0; }
+.pr-decisions li { margin: 0; padding: 0; }
+.pr-decisions h3 { color: var(--text); }
+.pr-decisions li + li { margin-top: 28px; }
+.pr-story .pr-closing-actions { margin-top: 28px; }
+@media(max-width:900px) {
+  .pr-intro { grid-template-columns: minmax(0,1fr) 220px; gap: 32px; padding-top: 120px; }
+  .pr-story-layout { grid-template-columns: minmax(0,1fr); padding-top: 44px; }
+  .pr-contents { display: none; }
+  .pr-mobile-contents { display: block; margin-bottom: 36px; border-block: 1px solid var(--line); }
+  .pr-mobile-contents summary { min-height: 48px; padding: 13px 0; font-size: 15px; cursor: pointer; }
+  .pr-mobile-contents nav { padding: 0 12px 16px; }
+  .pr-story { max-width: 70ch; }
+}
+@media(max-width:620px) {
+  .pixel-round-case { --pr-heading: 30px; --pr-body: 16px; }
+  .pr-intro { grid-template-columns: minmax(0,1fr); padding: 112px 20px 36px; gap: 28px; }
+  .pr-intro h1 { font-size: clamp(40px,10vw,52px); }
+  .pr-summary { font-size: 17px; }
+  .pr-product-mark { grid-template-columns: 100px minmax(0,1fr); align-items: center; justify-items: start; gap: 20px; padding: 4px 0; }
+  .pr-icon { width: 96px; }
+  .pr-sample { text-align: left; }
+  .pr-sample p { font-size: 24px; }
+  .pr-sample p span { margin-inline: 8px; }
+  .pr-project-meta { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+  .pr-project-meta > div:last-child { grid-column: 1/-1; }
+  .pr-project-image { padding-inline: 20px; }
+  .pr-story-layout { padding: 36px 20px 64px; }
+  .pr-story h3 { font-size: 21px; }
+  .pr-story section + section { margin-top: 40px; padding-top: 32px; }
+  .pr-story section { scroll-margin-top: 100px; }
+  .pr-closing-actions { align-items: start; flex-direction: column; }
+}

@@ -1,0 +1,6 @@
+/* The source library's pigment is evidence, not a new portfolio palette. */
+.core-foundation-evidence code { overflow-wrap: anywhere; }
+.core-foundation-evidence > p { color: var(--muted); font-size: var(--type-caption); line-height: 1.7; }
+.system-preview-media.system-preview-native { min-height: 120px; padding: 24px; }
+.system-preview-native a { margin-inline: auto; }
+.system-preview-native img { width: 100%; }

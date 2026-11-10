@@ -1,0 +1,111 @@
+/* Semantic colors for portfolio chrome. Product specimens keep their source colors. */
+:root:not([data-portfolio-layout="work-first"]) {
+  --bg: #171717;
+  --panel: #262626;
+  --text: #fafafa;
+  --muted: #a3a3a3;
+  --body-copy: var(--muted);
+  --line: #404040;
+  --control-border: #737373;
+  --surface-hover: #303030;
+  --action: #e5e5e5;
+  --action-bg: #e5e5e5;
+  --action-text: #171717;
+  --action-hover: #fff;
+  --focus: #e5e5e5;
+  --nav-line: rgb(255 255 255 / .12);
+  --icon-on-page: invert(1);
+  --icon-on-action: none;
+  --logo-filter: none;
+  --mint: var(--surface-hover);
+  --teal: var(--panel);
+  --sage: var(--muted);
+  --caption: var(--muted);
+  --red: #f5a698;
+  --blue: #a2caff;
+  --violet: #d3c4ff;
+  --font-display: var(--font-sans);
+  color-scheme: dark;
+  scrollbar-color: var(--control-border) var(--bg);
+}
+
+:root[data-theme="light"]:not([data-portfolio-layout="work-first"]) {
+  --bg: #fafafa;
+  --panel: #f0f0f0;
+  --text: #171717;
+  --muted: #525252;
+  --line: #d4d4d4;
+  --control-border: #737373;
+  --surface-hover: #e5e5e5;
+  --action: #262626;
+  --action-bg: #262626;
+  --action-text: #fafafa;
+  --action-hover: #404040;
+  --focus: #171717;
+  --nav-line: rgb(0 0 0 / .16);
+  --icon-on-page: none;
+  --icon-on-action: invert(1);
+  --logo-filter: brightness(.7);
+  --red: #8d3326;
+  --blue: #245085;
+  --violet: #5b3d8c;
+  color-scheme: light;
+}
+
+html:not([data-portfolio-layout="work-first"]) body::before { display: none; }
+html:not([data-portfolio-layout="work-first"]) ::selection { background: var(--action-bg); color: var(--action-text); }
+html:not([data-portfolio-layout="work-first"]) :is(.inner-page, .case-page) { padding-top: 88px; }
+html:not([data-portfolio-layout="work-first"]) :is(.page-hero, .case-hero, .article-page, .gallery-heading) h1 {
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 550;
+}
+html:not([data-portfolio-layout="work-first"]) :is(.about-introduction, .ai-practice-page, .side-projects-page, .design-systems-page, .uiqa-page, .pixel-round-case) h1 {
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 550;
+}
+html:not([data-portfolio-layout="work-first"]) :is(.case-story, .article-page, .side-projects-page, .ai-practice-page, .uiqa-page, .pixel-round-case) :is(h2, h3) {
+  font-weight: 550;
+}
+html:not([data-portfolio-layout="work-first"]) :is(.case-card, .article-card, .project-illustration, .article-cover, .industry-tile > div, .gallery-preview, .gallery-thumbnail, .about-portrait) { border-radius: 10px; }
+html:not([data-portfolio-layout="work-first"]) :is(.project-illustration, .work-nav-preview-media img) { filter: none; }
+html:not([data-portfolio-layout="work-first"]) :is(.case-card, .article-card):focus-visible { outline-color: var(--focus); }
+html:not([data-portfolio-layout="work-first"]) :is(.work-filter-options button, .work-collection-switcher a, .gallery-stepper button, .gallery-inspector-actions button, .gallery-inspect, .pr-primary, .comment-launch, .comment-send) { border-radius: 999px; }
+html:not([data-portfolio-layout="work-first"]) :is(.pill-link, .about-primary, .portfolio-primary, .pr-primary, .gallery-inspect, .comment-send):not(:disabled) {
+  background: var(--action-bg);
+  border-color: var(--action-bg);
+  color: var(--action-text);
+}
+html:not([data-portfolio-layout="work-first"]) :is(.pill-link, .about-primary, .portfolio-primary, .pr-primary, .gallery-inspect, .comment-send):hover:not(:disabled) {
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+  color: var(--action-text);
+}
+html:not([data-portfolio-layout="work-first"]) .uiqa-rule-tabs button[aria-selected="true"] {
+  background: var(--action-bg);
+  color: var(--action-text);
+}
+html:not([data-portfolio-layout="work-first"]) .case-chapter-marker { background: var(--surface-hover); }
+html:not([data-portfolio-layout="work-first"]) :is(.gallery-preview, .gallery-index) { scrollbar-color: var(--control-border) var(--panel); }
+html:not([data-portfolio-layout="work-first"]) .search-backdrop { background: rgb(0 0 0 / .48); }
+html:not([data-portfolio-layout="work-first"]) .search-panel { background: var(--bg); box-shadow: 0 24px 64px rgb(0 0 0 / .25); }
+html:not([data-portfolio-layout="work-first"]) .search-field:focus-within { border-color: var(--focus); }
+html:not([data-portfolio-layout="work-first"]) .search-results button:hover { background: var(--surface-hover); }
+html:not([data-portfolio-layout="work-first"]) .comment-send:disabled { background: var(--panel); }
+.docs-top { background: var(--doc-bg); }
+.docs-identity { min-width: 0; }
+
+.static-portfolio > main:not([class]) {
+  width: min(720px, calc(100% - 32px));
+  padding: 120px 0 32px;
+  margin: auto;
+}
+.static-portfolio > main:not([class]) h1 { font-size: clamp(32px, 5vw, 52px); }
+.static-portfolio > main:not([class]) a { text-decoration: underline; }
+
+@media (max-width: 809px) {
+  html:not([data-portfolio-layout="work-first"]) .case-page .case-story > .case-chapter-nav { top: 78px; }
+}
+@media (max-width: 380px) {
+  .docs-top { gap: 4px; padding-inline: 8px; }
+  .docs-identity select { max-width: min(44vw, 157px); }
+}

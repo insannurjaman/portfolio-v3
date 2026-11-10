@@ -1,0 +1,108 @@
+.portfolio-home {
+  display: grid;
+  gap: 56px;
+  width: min(576px, calc(100% - 32px));
+  margin-inline: auto;
+  padding-top: 132px;
+}
+.portfolio-home :is(h1, h2, h3, p) { margin: 0; text-wrap: wrap; }
+.portfolio-home :is(h1, h2, h3) { font: 500 14px/20px var(--font-sans); letter-spacing: 0; }
+.home-profile { display: flex; flex-direction: column; align-items: flex-start; font-size: 14px; }
+.home-portrait { display: block; border-radius: 14px; object-fit: cover; margin-bottom: 24px; }
+.home-profile .home-role { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 16px; }
+.home-profile > p { margin-top: 32px; line-height: 24px; }
+.home-profile-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.home-profile-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding-inline: 14px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.home-profile-actions a:hover { background: var(--panel); }
+.home-profile-actions .home-email { background: var(--action-bg); color: var(--action-text); }
+.home-profile-actions .home-email:hover { background: var(--action-hover); }
+.home-profile-actions img { width: auto; height: auto; filter: var(--icon-on-page); }
+.home-profile-actions .home-email img { filter: var(--icon-on-action); }
+
+.home-company-rail { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.home-company-rail::-webkit-scrollbar { display: none; }
+.home-company-rail ul {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.home-company-rail li { flex: none; }
+.home-company-rail li > img { display: block; max-width: none; filter: var(--logo-filter); }
+.home-company-rail li:nth-child(2) { width: 130px; padding-inline: .28px; }
+.home-company-rail li:last-child { opacity: .75; }
+.home-saphyte-logo { position: relative; width: 130px; height: 43.813px; }
+.home-saphyte-logo > img { position: absolute; }
+.home-saphyte-logo > img:nth-of-type(1) { left: 2.62%; top: 5.44%; }
+.home-saphyte-logo > img:nth-of-type(2) { left: 2.62%; top: 37.58%; opacity: .15; }
+.home-saphyte-logo > img:nth-of-type(3) { left: 10.38%; top: 25.23%; opacity: .15; }
+.home-saphyte-logo > img:nth-of-type(4) { left: 26.34%; top: 46.67%; opacity: .15; }
+.home-saphyte-logo > img:nth-of-type(5) { left: 17.26%; top: 59.25%; opacity: .15; }
+.home-saphyte-logo > img:nth-of-type(6) { left: 41.3%; top: 66.05%; }
+.home-saphyte-logo > img:nth-of-type(7) { left: 41.54%; top: 21.76%; }
+
+.home-project-section { display: grid; gap: 32px; position: relative; }
+.home-project-section > header { display: grid; gap: 8px; }
+.home-project-section > header p { color: var(--muted); font-size: 14px; line-height: 24px; }
+.home-project-section > #work, .home-spotlight > span { position: absolute; inset: 0 auto auto 0; }
+.home-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 12px; }
+.home-card { min-width: 0; }
+.home-card a { display: block; border-radius: 10px; }
+.home-card a:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
+.home-card-image { display: block; width: 100%; height: auto; background: var(--panel); }
+.home-card .home-card-image { aspect-ratio: 282 / 182; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+.home-card-source .home-card-image { object-fit: contain; }
+.home-card p { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 15px; }
+.home-card strong { color: var(--text); font-weight: 650; }
+.home-project-section .home-impact-note { margin-top: -16px; color: var(--muted); font-size: 12px; line-height: 18px; }
+.home-shipped .home-card .home-card-image, .home-spotlight, .home-spotlight .home-card-image { border-radius: 16px; }
+.home-spotlight { display: block; position: relative; }
+.home-spotlight .home-card-image { aspect-ratio: 576 / 360; object-fit: cover; }
+
+.home-testimonials { display: grid; gap: 16px; }
+.home-testimonials-heading, .home-testimonials-arrows { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.home-testimonials-heading h2 { color: var(--muted); font-weight: 400; }
+.home-testimonials button { display: grid; place-items: center; min-width: 28px; min-height: 28px; border: 0; border-radius: 999px; background: transparent; padding: 0; }
+.home-testimonials button:hover { background: var(--panel); }
+.home-testimonials-arrows img { max-width: none; filter: var(--logo-filter); }
+.home-testimonial { display: grid; gap: 20px; }
+.home-testimonial blockquote { margin: 0; color: var(--muted); font-size: 16px; line-height: 26px; }
+.home-testimonial blockquote p { line-height: inherit; }
+.home-testimonial blockquote p + p { margin-top: 12px; }
+#home-testimonial blockquote { min-height: 78px; }
+.home-testimonial figcaption { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.home-testimonial figcaption img { flex: none; border-radius: 50%; object-fit: cover; }
+.home-testimonial figcaption div { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; }
+.home-testimonial figcaption b { font-weight: 500; }
+.home-testimonial figcaption span { color: var(--muted); font-size: 12px; }
+.home-testimonial-dots { display: flex; gap: 2px; }
+.home-testimonial-dots button span { width: 6px; height: 6px; border-radius: 99px; background: var(--control-border); }
+.home-testimonial-dots button[aria-current] span { width: 20px; background: var(--muted); }
+.home-all-recommendations { color: var(--muted); font-size: 12px; }
+.home-all-recommendations summary { display: list-item; width: fit-content; padding-block: 6px; cursor: pointer; }
+.home-all-recommendations summary:hover, .home-all-recommendations a:hover { color: var(--text); }
+.home-all-recommendations ul { display: grid; gap: 24px; margin: 16px 0; padding: 0; list-style: none; }
+.home-all-recommendations li { padding-block: 16px; border-top: 1px solid var(--line); }
+.home-all-recommendations figcaption b { color: var(--text); }
+.home-all-recommendations a { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 520px) {
+  .portfolio-home { padding-top: 112px; }
+  .home-card-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-company-rail ul { gap: 32px; }
+  .home-profile-actions a, .home-testimonials button, .home-all-recommendations summary { min-height: 44px; }
+  .home-all-recommendations summary { padding-block: 13px; }
+  .home-card p { font-size: 14px; line-height: 1.55; }
+}
