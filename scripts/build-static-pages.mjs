@@ -55,7 +55,7 @@ try {
       element = el("main", { id: "main-content" }, el("h1", null, title), ...(page?.body || [collection?.description || "Explore original product design work and public documentation."]).map((text, i) => el("p", { key: i }, text)), el("nav", { "aria-label": "Portfolio links" }, el("a", { href: "/work" }, "All work"), " · ", el("a", { href: "/about" }, "About Insan"), " · ", el("a", { href: "/uiqa" }, "UIQA")));
     }
     return renderToStaticMarkup(el(MemoryRouter, { initialEntries: [route] },
-      el(PortfolioHeader, { interactive: false, resume: data.resume }), element, el(PortfolioFooter, { resume: data.resume, linkedin: data.linkedin })));
+      el(PortfolioHeader, { interactive: false, resume: data.resume }), element, el(PortfolioFooter, { interactive: false, resume: data.resume, linkedin: data.linkedin })));
   }
   for (const route of [...routes].sort()) {
     const meta = pageMetadata(route, data.pages);

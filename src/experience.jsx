@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import "./experience.css";
 
 export const EXPERIENCE_SOURCE = "https://www.linkedin.com/in/insannurjaman/";
 
-// Experience follows the owner-supplied Insan_Nurjaman_Resume.pdf
-// (2026/Novermber 6), including its contribution and metric qualifiers.
+// Experience follows the owner-supplied Insan_Nurjaman_Resume.pdf.
 export const EXPERIENCE = [
   {
     id: "loyica", company: "Saphyte", role: "UI/UX Designer", type: "Full-time", location: "Remote",
     start: "2025-05", end: "2026-10", period: "May 2025 – Oct 2026",
-    summary: "KYC verification, withdrawals, payments, commissions, and E-Afghans application workflows.",
+    summary: "Designed KYC, withdrawals, payments, and commission workflows. KYC Accept clicks rose from 507 to 2,265 after the redesign, and I simplified the E-Afghans passport application from 9 steps to 6.",
     highlights: [
       "Supported a SaaS platform that recorded 3.7K unique visitors, 52K sessions, and 242K pageviews in 2026 by designing complex workflows for KYC verification, withdrawals, payments, and commission management.",
       "Shipped redesigned KYC verification workflows, coinciding with a 347% increase in Accept-button interactions, from 507 in May to 2,265 in June 2026.",
@@ -22,7 +21,7 @@ export const EXPERIENCE = [
   {
     id: "accelbyte", company: "AccelByte", role: "Product Designer", type: "Full-time", location: "Remote",
     start: "2023-01", end: "2025-05", period: "Jan 2023 – May 2025",
-    summary: "Guided onboarding, studio activation, and self-service billing.",
+    summary: "Designed guided onboarding and free trials, contributing to a 25% increase in registered-to-active studio conversion. Self-service billing and reusable components helped improve paid studio conversion by 19%.",
     highlights: [
       "Contributed to a 21.17% average increase in user registrations and a 25% increase in registered-to-active studio conversion by designing guided onboarding, preview, and free-trial experiences.",
       "Contributed to a 19% increase in paid studio conversion by designing self-service billing experiences and developing reusable design system components.",
@@ -32,13 +31,13 @@ export const EXPERIENCE = [
   {
     id: "ruangguru", company: "Ruangguru", role: "UI Designer", type: "Full-time", location: "Remote",
     start: "2022-01", end: "2022-11", period: "Jan 2022 – Nov 2022",
-    summary: "UI consistency, reusable design-system components, usability testing, and engineering collaboration.",
+    summary: "Improved UI consistency by refining design system components, testing high-fidelity designs with users, and working with engineers on implementation.",
     highlights: ["Strengthened UI consistency by refining reusable design system components, validating high-fidelity interfaces through usability testing, and collaborating with engineers on implementation."], projects: [],
   },
   {
     id: "tokopedia", company: "Tokopedia", role: "Product Designer", type: "Full-time", location: "Remote",
     start: "2021-03", end: "2021-12", period: "Mar 2021 – Dec 2021",
-    summary: "OTP verification success, fewer unnecessary SMS requests, and lower monthly costs.",
+    summary: "Improved OTP verification success by about 4%, cut 6,000 unnecessary SMS requests per month, and saved about Rp2.1 million in monthly costs.",
     highlights: [
       "Improved OTP verification success rates by approximately 4%, reduced unnecessary SMS OTP requests by 6,000 per month, and saved approximately Rp2.1 million in monthly costs.",
     ],
@@ -47,7 +46,7 @@ export const EXPERIENCE = [
   {
     id: "eftax-2019", company: "Eftax Co., Ltd.", role: "Founding Product Designer", type: "Freelance", location: "Remote",
     start: "2019-09", end: "2021-03", period: "Sep 2019 – Mar 2021",
-    summary: "HaloDish landing-page design and implementation for user acquisition conversion.",
+    summary: "Designed and built the HaloDish landing page, contributing to a 1,296% increase in user acquisition conversion.",
     highlights: [
       "Contributed to a 1,296% increase in user acquisition conversion by designing and implementing the HaloDish landing page.",
     ],
@@ -65,11 +64,27 @@ function ExperiencePeriod({ item }) {
   return <><time dateTime={item.start}>{start}</time>{" – "}<time dateTime={item.end}>{end}</time></>;
 }
 
-export function HomeExperience() {
+export function HomeExperience({ interactive = true }) {
+  const timeline = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const list = timeline.current;
+    if (!interactive || !list || !window.IntersectionObserver) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setVisible(true);
+      observer.disconnect();
+    }, { rootMargin: "0px 0px -22% 0px" });
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [interactive]);
+
   return <section className="home-experience" id="experience" aria-labelledby="home-experience-title">
     <h2 id="home-experience-title">Experience</h2>
-    <ol className="home-experience-list" role="list">
+    <ol className="home-experience-list" role="list" ref={timeline} data-sheen={visible || undefined}>
       {EXPERIENCE.map(item => <li key={item.id}>
+        <ExperienceLogo id={item.id} compact/>
         <div className="home-experience-heading">
           <h3>{item.role} <span className="home-experience-company"><span aria-hidden="true">· </span>{item.company}</span></h3>
           <span className="home-experience-period"><ExperiencePeriod item={item}/></span>
@@ -89,11 +104,12 @@ const COMPANY_LOGOS = {
   "eftax-2019": { src: "/brand/worked-with/eftax.svg", initials: "e" },
 };
 
-function ExperienceLogo({ id }) {
+function ExperienceLogo({ id, compact = false }) {
   const [failed, setFailed] = useState(false);
   const logo = COMPANY_LOGOS[id];
+  const size = compact ? 32 : 56;
   return <span className={`experience-logo${logo.inverse ? " experience-logo-inverse" : ""}${logo.fullBleed ? " experience-logo-full" : ""}${logo.wordmark ? " experience-logo-wordmark" : ""}`} aria-hidden="true">
-    {logo.src && !failed ? <img src={logo.src} alt="" width="56" height="56" loading="lazy" onError={() => setFailed(true)}/> : <span>{logo.initials}</span>}
+    {logo.src && !failed ? <img src={logo.src} alt="" width={size} height={size} loading="lazy" onError={() => setFailed(true)}/> : <span>{logo.initials}</span>}
   </span>;
 }
 

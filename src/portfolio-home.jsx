@@ -99,7 +99,7 @@ export function PortfolioHome({ data, interactive = true }) {
         <HomeCover image={ANTIFLEX_UI_THUMBNAIL}/>
       </a>
     </section>
-    <HomeExperience/>
+    <HomeExperience interactive={interactive}/>
     <Recommendations compact interactive={interactive}/>
   </main>;
 }

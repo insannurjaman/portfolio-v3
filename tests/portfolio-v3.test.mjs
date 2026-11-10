@@ -41,13 +41,14 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
   try {
     const { PortfolioHome } = await server.ssrLoadModule("/src/portfolio-home.jsx");
     const { PortfolioHeader, PortfolioFooter } = await server.ssrLoadModule("/src/portfolio-shell.jsx");
-    const html = render(create(PortfolioHeader, { interactive: false }), create(PortfolioHome, { interactive: false }), create(PortfolioFooter));
+    const html = render(create(PortfolioHeader, { interactive: false }), create(PortfolioHome, { interactive: false }), create(PortfolioFooter, { interactive: false }));
     for (const path of ["/", "/#contact", "/design-systems", "/articles", "/industries"]) {
       assert.ok(html.includes(`href="${path}"`), path);
     }
     assert.match(html, /id="recommendations-list"/);
     assert.equal((html.match(/class="recommendation-full"/g) || []).length, 8);
     assert.match(html, /id="contact"/);
+    assert.match(html, /Let’s Work Together/);
     assert.match(html, /id="experience"/);
     assert.doesNotMatch(html, /href="\/about"/);
     const primaryNav = html.match(/<nav[^>]*aria-label="Primary navigation"[^>]*>[\s\S]*?<\/nav>/)[0];
