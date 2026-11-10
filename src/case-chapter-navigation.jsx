@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { animateFeedback, EDITORIAL_EASE } from "./motion-feedback.js";
 import { ChevronDown } from "lucide-react";
 import { caseReadingPosition } from "./case-reading-position.js";
 import "./case-chapter-navigation.css";
@@ -8,14 +7,13 @@ export function CaseChapterNavigation({ chapters }) {
   const root = useRef(null);
   const list = useRef(null);
   const toggle = useRef(null);
-  const marker = useRef(null), track = useRef(null);
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
   const chapterKey = chapters.map(chapter => chapter.id).join("|");
 
   useEffect(() => {
     const node = root.current;
-    const article = node.closest(".case-story")?.querySelector("article");
+    const article = node.closest(".case-page")?.querySelector(".case-story > article");
     const headings = chapterKey.split("|").map(id => document.getElementById(id));
     if (!article || headings.some(heading => !heading)) return;
     let frame = null;
@@ -31,12 +29,10 @@ export function CaseChapterNavigation({ chapters }) {
         bottom = article.getBoundingClientRect().bottom + scrollY;
         needsMeasure = false;
       }
-      const headerBottom = document.querySelector(".editorial-header")?.getBoundingClientRect().bottom || 82;
-      const readingLine = headerBottom + (window.innerWidth <= 900 ? 96 : 64);
+      const headerBottom = document.querySelector(".portfolio-header")?.getBoundingClientRect().bottom || 64;
+      const readingLine = headerBottom + 64 + (toggle.current?.offsetHeight || 0);
       const position = caseReadingPosition({ offsets, scrollY, readingLine, bottom, viewportHeight: window.innerHeight });
       node.style.setProperty("--reading-progress", position.progress);
-      node.style.setProperty("--chapter-progress", headings.length > 1 ? position.active / (headings.length - 1) : 1);
-      node.style.setProperty("--chapter-offset", `${position.active * 44}px`);
       setActive(previous => previous === position.active ? previous : position.active);
     }
     function schedule() {
@@ -58,22 +54,6 @@ export function CaseChapterNavigation({ chapters }) {
     };
   }, [chapterKey]);
 
-
-  useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const targets = [[marker.current, `translateY(${active * 44}px)`], [track.current, `scaleY(${chapters.length > 1 ? active / (chapters.length - 1) : 1})`]];
-    let controls = [];
-    function settle() {
-      controls.forEach(control => control?.cancel());
-      targets.forEach(([element, transform]) => { element.style.transform = transform; });
-    }
-    if (preference.matches) settle();
-    else controls = targets.map(([element, transform]) => animateFeedback(element, { transform }, { duration: 0.26, ease: EDITORIAL_EASE }));
-    const change = () => { if (preference.matches) settle(); };
-    preference.addEventListener("change", change);
-    return () => { controls.forEach(control => control?.stop()); preference.removeEventListener("change", change); };
-  }, [active, chapterKey, chapters.length]);
-
   useEffect(() => {
     const panel = list.current;
     const link = panel?.querySelector('[aria-current="location"]');
@@ -91,7 +71,7 @@ export function CaseChapterNavigation({ chapters }) {
       if (event.key === "Escape") { setOpen(false); toggle.current?.focus(); }
       else if (event.type === "pointerdown" && !root.current?.contains(event.target)) setOpen(false);
     }
-    function resize() { if (window.innerWidth > 900) setOpen(false); }
+    function resize() { if (!toggle.current?.offsetHeight) setOpen(false); }
     document.addEventListener("keydown", dismiss);
     document.addEventListener("pointerdown", dismiss);
     window.addEventListener("resize", resize);
@@ -110,11 +90,9 @@ export function CaseChapterNavigation({ chapters }) {
       <span className="case-chapter-toggle-end"><span className="case-chapter-count">{position}</span><ChevronDown size={18} aria-hidden="true"/></span>
     </button>
     <nav id="case-chapter-links" className="case-chapter-links" ref={list} aria-label="Case study chapters">
-      <div className="case-chapter-track" aria-hidden="true"><span ref={track} style={{ transform: "scaleY(0)" }}/></div>
-      <div className="case-chapter-marker" ref={marker} style={{ transform: "translateY(0px)" }} aria-hidden="true"/>
-      {chapters.map((chapter, index) => <a key={chapter.id} href={`#${chapter.id}`} aria-current={active === index ? "location" : undefined} data-read={index < active ? "true" : undefined} onClick={() => {
+      {chapters.map((chapter, index) => <a key={chapter.id} href={`#${chapter.id}`} title={chapter.title} aria-current={active === index ? "location" : undefined} onClick={() => {
         if (open) { setOpen(false); toggle.current?.focus({ preventScroll: true }); }
-      }}><span className="case-chapter-dot" aria-hidden="true"/><span>{chapter.title}</span></a>)}
+      }}><span className="case-chapter-tick" aria-hidden="true"/><span className="case-chapter-label">{chapter.title}</span></a>)}
     </nav>
     <div className="case-chapter-mobile-progress" aria-hidden="true"><span/></div>
   </aside>;

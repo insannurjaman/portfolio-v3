@@ -117,7 +117,7 @@ test("unrelated pages and missing records pass through without acquiring case-st
   assert.match(source, /CASE_READING_BLOCK_TYPES\.has\(block\.type\)/);
 });
 
-test("the production case renderer exposes eight numbered chapters and valid in-page links on all 21 routes", async () => {
+test("the production case renderer exposes eight chapters and valid in-page links on all 21 routes", async () => {
   // Remove only browser bootstrapping for server-side rendering, not the production component.
   const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false }, appType: "custom", plugins: [{
     name: "case-reading-ssr-test", enforce: "pre",
@@ -127,9 +127,8 @@ test("the production case renderer exposes eight numbered chapters and valid in-
     const { CaseStudy } = await server.ssrLoadModule("/src/main.jsx");
     for (const path of STRUCTURED_CASE_PATHS) {
       const html = renderToStaticMarkup(React.createElement(MemoryRouter, { initialEntries: [path] }, React.createElement(CaseStudy, { data: { pages } })));
-      const chapters = [...html.matchAll(/<h2 class="source-heading[^"]*" id="([^"]+)"><span>(\d{2})<\/span>([^<]+)<\/h2>/g)];
-      assert.deepEqual(chapters.map(match => match[2]), ["01", "02", "03", "04", "05", "06", "07", "08"], path);
-      assert.deepEqual(chapters.map(match => match[3].replaceAll("&amp;", "&")), expected, path);
+      const chapters = [...html.matchAll(/<h2 class="source-heading[^"]*" id="([^"]+)">([^<]+)<\/h2>/g)];
+      assert.deepEqual(chapters.map(match => match[2].replaceAll("&amp;", "&")), expected, path);
       const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
       assert.equal(new Set(ids).size, ids.length, `Duplicate rendered ID on ${path}`);
       for (const [, target] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(target), `Broken rendered target ${target} on ${path}`);

@@ -51,6 +51,7 @@ import "./editorial.css";
 import "./editorial-content.css";
 import "./hiring-home.css";
 import "./portfolio-theme.css";
+import "./case-detail.css";
 
 // Temporarily hidden by the owner; keep the original links for later restoration.
 const SHOW_CASE_HERO_ACTIONS = false;
@@ -205,24 +206,33 @@ function GalleryPage({ data }) {
 }
 
 function CaseStudy({ data }) {
-  const path = useLocation().pathname;
+  const { pathname: path, state } = useLocation();
   const page = withCaseStudyStructure(data.pages[path]);
   useEffect(() => { document.title = `${page?.title || "Project"} | Insan Nurjaman`; }, [page?.title]);
   if (!page) return <NotFound/>;
   const headings = page.story ? caseChapterTitles(page.story)
-    : [...page.headings.h4, ...page.headings.h5].filter(Boolean);
+    : [...page.headings.h4, ...page.headings.h5, ...page.headings.h6].filter(Boolean);
+  const chapters = (page.designCase ? headings : headings.slice(0,10)).map((title, index) => ({
+    title, id: caseChapterId(page, title, index),
+  }));
+  const backTo = state?.fromSelectedWork ? "/#selected-work" : page.systemCase ? "/design-systems" : "/work";
+  const backLabel = state?.fromSelectedWork ? "Back to selected work" : page.systemCase ? "All design systems" : "All work";
   return <main id="main-content" className={`case-page ${page.designCase ? "design-case" : ""} ${page.mobileCase ? "mobile-design-case" : ""} ${page.narrative ? "narrative-case" : ""} ${page.systemCase ? "system-case" : ""} ${page.portalCase ? "portal-case" : ""}`}>
-    <section className="case-hero">
-      <Link to={page.systemCase ? "/design-systems" : "/work"} className="back-link"><ArrowLeft/> {page.systemCase ? "All design systems" : "All work"}</Link>
+    <header className="case-hero">
+      <Link to={backTo} className="back-link"><ArrowLeft size={16} aria-hidden="true"/> {backLabel}</Link>
       <h1>{page.title}</h1><p>{page.body[0]}</p>
-      {SYSTEM_STORY_DOCS[path] && <Link className="text-link case-docs-link" to={SYSTEM_STORY_DOCS[path]}>Explore public documentation <ArrowRight size={18}/></Link>}
-      <div className="case-meta"><span>Role<br/><b>{page.metadata?.role || "Product Designer"}</b></span><span>Practice<br/><b>{page.metadata?.practice || "Research · UX · UI"}</b></span><span>{page.metadata?.label || "Archive"}<br/><b>{page.metadata?.value || "Full source preserved"}</b></span></div>
-      {page.appLinks && <div className="case-app-links">{page.appLinks.map(link => <a className="pill-link" key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight size={16}/></a>)}</div>}
+      {page.coverGallery ? <figure className="case-cover mobile-case-cover"><div className="mobile-cover-grid">{page.coverGallery.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption} full size`}><div className="evidence-image-frame"><img src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height}/></div><span>{img.caption}<ArrowUpRight size={14} aria-hidden="true"/></span></a>)}</div><figcaption>{page.coverCaption || "Actual HaloDish design screens. Open a screen to inspect it at full size."}</figcaption></figure> : page.images[0] && <div className="case-cover"><div className="case-cover-image evidence-image-frame"><img src={page.images[0].src} alt={page.images[0].alt || `${page.title} cover`} width={caseScreenDimensions(page.images[0].src).width || page.images[0].width} height={caseScreenDimensions(page.images[0].src).height || page.images[0].height}/></div></div>}
+      {SYSTEM_STORY_DOCS[path] && <Link className="text-link case-docs-link" to={SYSTEM_STORY_DOCS[path]}>Explore public documentation <ArrowRight size={16} aria-hidden="true"/></Link>}
+      {page.appLinks && <div className="case-app-links">{page.appLinks.map(link => <a className="text-link" key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight size={14} aria-hidden="true"/></a>)}</div>}
+      <dl className="case-meta">
+        <div><dt>Role</dt><dd>{page.metadata?.role || "Product Designer"}</dd></div>
+        <div><dt>Practice</dt><dd>{page.metadata?.practice || "Research · UX · UI"}</dd></div>
+        <div><dt>{page.metadata?.label || "Archive"}</dt><dd>{page.metadata?.value || "Full source preserved"}</dd></div>
+      </dl>
       {SHOW_CASE_HERO_ACTIONS && (page.narrative ? <div className="case-reading-actions"><a className="text-link" href="#chapter-0">Read project summary <ArrowDownRight size={18}/></a>{page.sourceUrl && <a className="text-link case-source-link" href={page.sourceUrl} target="_blank" rel="noreferrer">{page.sourceLabel || "Explore the Figma design"} <ArrowUpRight size={16}/></a>}</div> : page.sourceUrl && <a className="text-link case-source-link" href={page.sourceUrl} target="_blank" rel="noreferrer">{page.sourceLabel || "Explore the Figma design"} <ArrowUpRight size={16}/></a>)}
-    </section>
-    {page.coverGallery ? <figure className="case-cover mobile-case-cover"><div className="mobile-cover-grid">{page.coverGallery.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption} full size`}><div className="evidence-image-frame"><img src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height}/></div><span>{img.caption}<ArrowUpRight size={16}/></span></a>)}</div><figcaption>{page.coverCaption || "Actual HaloDish design screens. Open a screen to inspect it at full size."}</figcaption></figure> : page.images[0] && <div className="case-cover"><div className="case-cover-image evidence-image-frame"><img src={page.images[0].src} alt={page.images[0].alt || `${page.title} cover`} width={caseScreenDimensions(page.images[0].src).width || page.images[0].width} height={caseScreenDimensions(page.images[0].src).height || page.images[0].height}/></div></div>}
-    <section className="case-story section-pad">
-      <CaseChapterNavigation key={path} chapters={(page.designCase ? headings : headings.slice(0,10)).map((title, index) => ({ title, id: caseChapterId(page, title, index) }))}/>
+    </header>
+    {chapters.length > 0 && <CaseChapterNavigation key={path} chapters={chapters}/>}
+    <section className="case-story">
       <article>{renderCaseContent(page, headings)}{page.related && <div className="case-companion"><p>Explore the other side of the E-Afghan experience.</p><Link className="text-link" to={page.related}>{data.pages[page.related].title}<ArrowRight size={18}/></Link></div>}</article>
     </section>
     <NextProject current={path} data={data}/>
@@ -268,7 +278,7 @@ function renderCaseContent(page, chapterTitles) {
         const level = Number(block.type.slice(1));
         if (level <= 4) {
           chapter += 1;
-          return <h2 className={`source-heading level-${level}`} id={caseChapterId(page,block.text,chapter-1)} key={i}><span>{String(chapter).padStart(2,"0")}</span>{block.text}</h2>;
+          return <h2 className={`source-heading level-${level}`} id={caseChapterId(page,block.text,chapter-1)} key={i}>{block.text}</h2>;
         }
         return <h3 className="source-subheading" key={i}>{block.text}</h3>;
       }
@@ -285,7 +295,7 @@ function renderCaseContent(page, chapterTitles) {
     const block = paras.slice(pi, pi + groups); pi += groups;
     const imageCount = Math.ceil(images.length / headings.length);
     const blockImages = images.slice(ii, ii + imageCount); ii += imageCount;
-    return <section className="story-chapter" id={`chapter-${hi}`} key={heading+hi}><span className="chapter-number">{String(hi+1).padStart(2,"0")}</span><h2>{heading}</h2>{block.map((p,i) => <p key={i}>{p}</p>)}{blockImages.map((img,i) => <figure key={img.src}><img src={img.src} alt={`${heading} visual ${i+1}`} loading="lazy"/></figure>)}</section>;
+    return <section className="story-chapter" id={`chapter-${hi}`} key={heading+hi}><h2>{heading}</h2>{block.map((p,i) => <p key={i}>{p}</p>)}{blockImages.map((img,i) => <figure key={img.src}><img src={img.src} alt={`${heading} visual ${i+1}`} loading="lazy"/></figure>)}</section>;
   }).concat(paras.slice(pi).length ? [<section className="story-chapter" key="remaining">{paras.slice(pi).map((p,i)=><p key={i}>{p}</p>)}</section>] : []);
 }
 

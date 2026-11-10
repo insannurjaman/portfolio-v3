@@ -102,8 +102,8 @@ body:has(:focus-visible) .viewport-edge-blur { visibility: hidden; }
 
 html:not([data-portfolio-layout="work-first"]) body::before { display: none; }
 html:not([data-portfolio-layout="work-first"]) ::selection { background: var(--action-bg); color: var(--action-text); }
-html:not([data-portfolio-layout="work-first"]) :is(.inner-page, .case-page) { padding-top: 88px; }
-html:not([data-portfolio-layout="work-first"]) :is(.page-hero, .case-hero, .article-page, .gallery-heading) h1 {
+html:not([data-portfolio-layout="work-first"]) .inner-page { padding-top: 88px; }
+html:not([data-portfolio-layout="work-first"]) :is(.page-hero, .article-page, .gallery-heading) h1 {
   font-size: clamp(36px, 4.5vw, 64px);
   font-weight: 550;
 }
@@ -132,7 +132,6 @@ html:not([data-portfolio-layout="work-first"]) .uiqa-rule-tabs button[aria-selec
   background: var(--action-bg);
   color: var(--action-text);
 }
-html:not([data-portfolio-layout="work-first"]) .case-chapter-marker { background: var(--surface-hover); }
 html:not([data-portfolio-layout="work-first"]) :is(.gallery-preview, .gallery-index) { scrollbar-color: var(--control-border) var(--panel); }
 html:not([data-portfolio-layout="work-first"]) .search-backdrop { background: rgb(0 0 0 / .48); }
 html:not([data-portfolio-layout="work-first"]) .search-panel { background: var(--bg); box-shadow: 0 24px 64px rgb(0 0 0 / .25); }
@@ -150,9 +149,6 @@ html:not([data-portfolio-layout="work-first"]) .comment-send:disabled { backgrou
 .static-portfolio > main:not([class]) h1 { font-size: clamp(32px, 5vw, 52px); }
 .static-portfolio > main:not([class]) a { text-decoration: underline; }
 
-@media (max-width: 809px) {
-  html:not([data-portfolio-layout="work-first"]) .case-page .case-story > .case-chapter-nav { top: 78px; }
-}
 @media (max-width: 380px) {
   .docs-top { gap: 4px; padding-inline: 8px; }
   .docs-identity select { max-width: min(44vw, 157px); }

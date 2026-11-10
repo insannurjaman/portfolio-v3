@@ -61,7 +61,7 @@ function HomeCover({ image }) {
 
 function HomeCard({ project, selected = false }) {
   return <article className={`home-card${project.image ? " home-card-source" : ""}`}>
-    <Link to={project.path} aria-label={project.title} data-funnel={selected ? "selected_case" : undefined}>
+    <Link to={project.path} state={selected ? { fromSelectedWork: true } : undefined} aria-label={project.title} data-funnel={selected ? "selected_case" : undefined}>
       <HomeCover image={project.image || PROJECT_THUMBNAIL_OVERRIDES[project.path]}/>
       <h3>{project.title}</h3>
     </Link>
