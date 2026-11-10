@@ -5,7 +5,7 @@ import { CONTACT_EMAIL } from "./hiring-content.js";
 import { RESUME_URL } from "./editorial-shell.jsx";
 import "./portfolio-shell.css";
 
-export const PORTFOLIO_PORTRAIT = "/media/about/linkedin-portrait-800.jpg";
+export const PORTFOLIO_PORTRAIT = "/media/about/photo-reveal-30c6aeeb-800.jpg";
 export const PORTFOLIO_LINKEDIN = "https://www.linkedin.com/in/insannurjaman/";
 
 const navigation = [
