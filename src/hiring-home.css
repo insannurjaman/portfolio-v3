@@ -102,7 +102,7 @@
 /* Role and specialties stay readable while the existing headline reveals. */
 .editorial-hero-copy > .hero-role { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .5em; max-width: none; margin: 0 0 14px; color: var(--action); font: 500 13px/1.5 var(--font-sans); letter-spacing: .04em; text-transform: uppercase; }
 .hero-role > span { white-space: nowrap; }
-.editorial-hero-copy > p[data-hero-text-reveal="description"] { margin-bottom: 18px; }
+.editorial-hero-copy > p.hero-description { margin-bottom: 18px; }
 .hero-specialties { display: flex; flex-wrap: wrap; gap: 6px; max-width: 500px; list-style: none; margin: 0 0 24px; padding: 0; }
 .hero-specialties li { padding: 4px 9px; border: 1px solid var(--line); border-radius: 5px; background: rgb(251 250 246 / .9); color: var(--action); font: 500 12px/1.5 var(--font-sans); white-space: nowrap; }
 @media (min-width:810px) and (max-height:740px) {

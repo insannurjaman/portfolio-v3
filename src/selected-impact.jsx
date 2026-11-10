@@ -7,13 +7,13 @@ import "./selected-impact.css";
 export function SelectedImpact() {
   // Reveal the heading and each result separately through the shared controller.
   // Native markup stays readable without JavaScript and with reduced motion.
-  return <section className="selected-impact section-pad" id="selected-impact" aria-labelledby="selected-impact-title" data-scroll-generation-contents>
+  return <section className="selected-impact section-pad" id="selected-impact" aria-labelledby="selected-impact-title">
     <header className="selected-impact-heading">
       <p className="selected-impact-eyebrow">SELECTED IMPACT / 2021—2026</p>
       <h2 id="selected-impact-title">Design decisions.<br/>Measurable outcomes.</h2>
       <p>A snapshot of product outcomes across enterprise SaaS, onboarding, billing, and verification workflows.</p>
     </header>
-    <ul className="selected-impact-grid" aria-label="Selected business impact" data-scroll-generation-contents>
+    <ul className="selected-impact-grid" aria-label="Selected business impact">
       {SELECTED_IMPACT.map(item => <li key={item.id}>
         <article className="selected-impact-card" aria-labelledby={`impact-${item.id}`}>
           <p className="selected-impact-company"><span>{item.company}</span><span>{item.context}</span></p>

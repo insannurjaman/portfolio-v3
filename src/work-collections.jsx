@@ -14,7 +14,7 @@ function useWorkTitle(title) {
 export function WorkHub({ data, CaseCard }) {
   useWorkTitle("Selected Work");
   return <main id="main-content" className="inner-page work-hub">
-    <header className="page-hero" data-scroll-generation-contents><h1 data-text-reveal="headline">Selected work.</h1><div className="page-hero-bottom" data-scroll-generation-contents><p data-text-reveal="description">Six case studies across enterprise SaaS, design systems, onboarding, and mobile products.</p></div></header>
+    <header className="page-hero"><h1>Selected work.</h1><div className="page-hero-bottom"><p>Six case studies across enterprise SaaS, design systems, onboarding, and mobile products.</p></div></header>
     <section className="case-grid curated-case-grid section-pad" aria-labelledby="work-projects-title">
       <h2 id="work-projects-title" className="sr-only">Selected case studies</h2>
       {CURATED_CASE_PATHS.map((path, index) => <CaseCard key={path} item={data.pages[path]} index={index} headingFirst/>)}

@@ -58,19 +58,19 @@ function Hero({ resume, selectedWorkHref = "/#selected-work" }) {
     return () => { active = false; media.pause(); };
   }, [still, blocked, videoFailed, videoEnabled]);
   return <section className="editorial-hero" ref={hero} data-hero-composition="clear" data-still={still || blocked} aria-labelledby="home-title">
-    <div className="editorial-hero-art" data-scroll-generation-skip data-art-failed={artFailed} data-video-ready={videoReady && !reduced} data-video-failed={videoFailed} aria-hidden="true">
+    <div className="editorial-hero-art" data-art-failed={artFailed} data-video-ready={videoReady && !reduced} data-video-failed={videoFailed} aria-hidden="true">
       <img src={BACKGROUND_MEDIA.hero.poster} alt="" width="1920" height="1080" fetchPriority="high" decoding="async" onLoad={() => setPosterReady(true)} onError={() => setArtFailed(true)}/>
       <video ref={video} poster={BACKGROUND_MEDIA.hero.poster} autoPlay={videoEnabled && !still && !blocked} muted loop playsInline preload="none" onPlaying={() => { setVideoReady(true); setBlocked(false); }} onError={() => { setVideoFailed(true); setVideoReady(false); }}>
         {!reduced && videoEnabled && <><source src={BACKGROUND_MEDIA.hero.webm} type='video/webm; codecs="vp9"'/><source src={BACKGROUND_MEDIA.hero.mp4} type="video/mp4"/></>}
       </video>
     </div>
-    <svg className="hero-halftone" viewBox="0 0 600 360" aria-hidden="true">{Array.from({ length: 12 }, (_, row) => <g key={row} className="hero-pixel-row" style={{ "--pixel-delay": `${row * -.6}s` }}>{Array.from({ length: 27 }, (_, col) => <rect key={col} x={col * 22} y={row * 22 + Math.sin(col * .22) * 30 + 35} width={2 + ((row + col) % 3)} height={2 + ((row + col) % 3)} opacity={Math.max(.08, .65 - col / 44 - row / 45)}/>)}</g>)}</svg>
+    <svg className="hero-halftone" viewBox="0 0 600 360" aria-hidden="true">{Array.from({ length: 12 }, (_, row) => <g key={row}>{Array.from({ length: 27 }, (_, col) => <rect key={col} x={col * 22} y={row * 22 + Math.sin(col * .22) * 30 + 35} width={2 + ((row + col) % 3)} height={2 + ((row + col) % 3)} opacity={Math.max(.08, .65 - col / 44 - row / 45)}/>)}</g>)}</svg>
     <div className="editorial-hero-copy">
-      <p className="hero-role" data-scroll-generation-skip><span>Senior Product Designer</span><span className="hero-role-divider" aria-hidden="true">·</span><span className="hero-role-focus">SaaS &amp; Developer Tools</span></p>
-      <h1 id="home-title" data-hero-text-reveal="headline">Designing products<br/>that scale and create<br/>real impact</h1>
-      <p data-hero-text-reveal="description">I’m Insan. With 7+ years of experience, I turn complex problems into usable, scalable, and measurable product experiences across SaaS, CRM, e-commerce, trading platforms, design systems, and developer tools.</p>
-      <ul className="hero-specialties" aria-label="Specialties" data-scroll-generation-skip><li>Enterprise SaaS</li><li>Design Systems</li><li>UX Engineering</li></ul>
-      <div className="hero-actions" data-scroll-generation-skip><Link className="editorial-button" to={selectedWorkHref}><RollLabel>View Selected Work</RollLabel></Link><a className="editorial-button is-outline" href={resume} target="_blank" rel="noopener noreferrer"><RollLabel>Resume</RollLabel><ArrowUpRight size={16}/></a><a className="hero-email" href={`mailto:${CONTACT_EMAIL}`}>Email Me <ArrowUpRight size={16}/></a></div>
+      <p className="hero-role"><span>Senior Product Designer</span><span className="hero-role-divider" aria-hidden="true">·</span><span className="hero-role-focus">SaaS &amp; Developer Tools</span></p>
+      <h1 id="home-title">Designing products<br/>that scale and create<br/>real impact</h1>
+      <p className="hero-description">I’m Insan. With 7+ years of experience, I turn complex problems into usable, scalable, and measurable product experiences across SaaS, CRM, e-commerce, trading platforms, design systems, and developer tools.</p>
+      <ul className="hero-specialties" aria-label="Specialties"><li>Enterprise SaaS</li><li>Design Systems</li><li>UX Engineering</li></ul>
+      <div className="hero-actions"><Link className="editorial-button" to={selectedWorkHref}><RollLabel>View Selected Work</RollLabel></Link><a className="editorial-button is-outline" href={resume} target="_blank" rel="noopener noreferrer"><RollLabel>Resume</RollLabel><ArrowUpRight size={16}/></a><a className="hero-email" href={`mailto:${CONTACT_EMAIL}`}>Email Me <ArrowUpRight size={16}/></a></div>
       <p className="hiring-availability">{HIRING_AVAILABILITY}</p>
     </div>
   </section>;

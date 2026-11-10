@@ -46,10 +46,10 @@ test('hub, routes and disclosure are rendered with source artwork and safe nativ
     const render=(node,route='/work')=>renderToStaticMarkup(React.createElement(MemoryRouter,{initialEntries:[route]},node));
     const hub=render(React.createElement(WorkHub,{data:{pages},CaseCard:StubCase}));
     assert.ok(!hub.includes('class="category-tile"'));
-    assert.match(hub, /<h1 data-text-reveal="headline">Selected work\.<\/h1>/);
-    assert.match(hub, /<p data-text-reveal="description">Six case studies/);
-    assert.match(hub, /class="page-hero" data-scroll-generation-contents/);
-    assert.match(hub, /class="page-hero-bottom" data-scroll-generation-contents/);
+    assert.match(hub, /<h1>Selected work\.<\/h1>/);
+    assert.match(hub, /<p>Six case studies/);
+    assert.match(hub, /class="page-hero"/);
+    assert.match(hub, /class="page-hero-bottom"/);
     assert.ok(hub.includes('id="antiflex-ui-highlight"'));
     assert.ok(hub.includes('id="chamfer-ui-highlight"'));
     assert.deepEqual([...hub.matchAll(/data-test-case="([^"]+)"/g)].map(match=>match[1]), [...CURATED_CASE_PATHS]);

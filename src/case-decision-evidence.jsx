@@ -6,7 +6,7 @@ import "./case-decision-evidence.css";
 function EvidenceScreen({ image }) {
   const [failed, setFailed] = useState(false);
   return <a href={image.src} target="_blank" rel="noreferrer" aria-label={`Open ${image.caption} full size`}>
-    {failed ? <span className="decision-screen-fallback">Preview unavailable. Open the original design.</span> : <div className="image-reveal-frame" data-thumbnail-generation="light"><img data-thumbnail-source src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" onError={() => setFailed(true)}/></div>}
+    {failed ? <span className="decision-screen-fallback">Preview unavailable. Open the original design.</span> : <div className="evidence-image-frame"><img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" onError={() => setFailed(true)}/></div>}
     <span className="decision-screen-label">{image.caption}<ArrowUpRight size={15} aria-hidden="true"/></span>
   </a>;
 }

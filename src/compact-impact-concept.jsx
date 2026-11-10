@@ -5,7 +5,7 @@ import { SELECTED_IMPACT, IMPACT_ATTRIBUTION } from "./selected-impact-content.j
 import "./compact-impact-concept.css";
 
 export function CompactImpactConcept() {
-  return <section className="compact-impact-concept section-pad" id="selected-impact" aria-labelledby="selected-impact-title" data-scroll-generation-skip>
+  return <section className="compact-impact-concept section-pad" id="selected-impact" aria-labelledby="selected-impact-title">
     <header className="compact-impact-heading">
       <h2 id="selected-impact-title">Selected Impact</h2>
       <p>Reported product results across verification, onboarding, billing, and operating costs.</p>

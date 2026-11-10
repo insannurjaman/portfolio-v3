@@ -1,11 +1,10 @@
-import { EditorialHeader, EditorialFooter, EditorialIntro } from "./editorial-shell.jsx";
+import { EditorialHeader, EditorialFooter } from "./editorial-shell.jsx";
 import { KYC_CASE_PATH, kycPages } from "./kyc-content.js";
 import { SourceEvidenceGallery } from "./source-evidence-gallery.jsx";
 import { EditorialHome } from "./editorial-home.jsx";
 import { PortfolioHome } from "./portfolio-home.jsx";
 import { PortfolioFooter, PortfolioHeader } from "./portfolio-shell.jsx";
-import { ThumbnailGeneration } from "./thumbnail-generation.jsx";
-import { ScrollGeneration } from "./scroll-generation.jsx";
+import { TextEntrance } from "./text-entrance.jsx";
 import { resetRouteScroll } from "./route-scroll.js";
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation, useNavigate, useParams, Navigate } from "react-router-dom";
@@ -40,6 +39,7 @@ import { withCaseStudyStructure, CASE_STUDY_PROFILES } from "./case-study-struct
 import { CaseStudyReadingBlock, CASE_READING_BLOCK_TYPES } from "./case-study-reading.js";
 import { caseScreenDimensions } from "./case-screen-dimensions";
 import "./case-narrative.css";
+import "./evidence-images.css";
 import { IndustryGallery } from "./industry-gallery";
 import "./industry-gallery.css";
 import { CaseDecisionEvidence } from "./case-decision-evidence";
@@ -197,7 +197,7 @@ function PageHero({ eyebrow, title, copy, stat, compact=false }) {
 
 function IndustriesIndex({ data }) {
   return <main id="main-content" className="inner-page"><PageHero eyebrow="Industry archive" title="Range is a design advantage." copy="A visual archive of interface explorations across 20 product categories and business models." stat="20 / INDUSTRIES"/>
-    <section className="industry-index section-pad">{INDUSTRIES.map(([name,path],i) => { const p=data.pages[path]; return <Link to={path} key={path} className="industry-tile"><div data-thumbnail-generation="light">{p.images[0] && <img data-thumbnail-source src={p.images[0].src} alt="" loading="lazy"/>}</div><span>{String(i+1).padStart(2,"0")}</span><h2>{name}</h2><small>{p.images.length} explorations</small><ArrowUpRight/></Link>; })}</section>
+    <section className="industry-index section-pad">{INDUSTRIES.map(([name,path],i) => { const p=data.pages[path]; return <Link to={path} key={path} className="industry-tile"><div>{p.images[0] && <img src={p.images[0].src} alt="" loading="lazy"/>}</div><span>{String(i+1).padStart(2,"0")}</span><h2>{name}</h2><small>{p.images.length} explorations</small><ArrowUpRight/></Link>; })}</section>
   </main>;
 }
 
@@ -224,7 +224,7 @@ function CaseStudy({ data }) {
       {page.appLinks && <div className="case-app-links">{page.appLinks.map(link => <a className="pill-link" key={link.href} href={link.href} target="_blank" rel="noreferrer">{link.label}<ArrowUpRight size={16}/></a>)}</div>}
       {SHOW_CASE_HERO_ACTIONS && (page.narrative ? <div className="case-reading-actions"><a className="text-link" href="#chapter-0">Read project summary <ArrowDownRight size={18}/></a>{page.sourceUrl && <a className="text-link case-source-link" href={page.sourceUrl} target="_blank" rel="noreferrer">{page.sourceLabel || "Explore the Figma design"} <ArrowUpRight size={16}/></a>}</div> : page.sourceUrl && <a className="text-link case-source-link" href={page.sourceUrl} target="_blank" rel="noreferrer">{page.sourceLabel || "Explore the Figma design"} <ArrowUpRight size={16}/></a>)}
     </section>
-    {page.coverGallery ? <figure className="case-cover mobile-case-cover"><div className="mobile-cover-grid">{page.coverGallery.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption} full size`}><div className="image-reveal-frame" data-thumbnail-generation="light"><img data-thumbnail-source src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height}/></div><span>{img.caption}<ArrowUpRight size={16}/></span></a>)}</div><figcaption>{page.coverCaption || "Actual HaloDish design screens. Open a screen to inspect it at full size."}</figcaption></figure> : page.images[0] && <div className="case-cover"><div className="case-cover-image image-reveal-frame" data-thumbnail-generation="light"><img data-thumbnail-source src={page.images[0].src} alt={page.images[0].alt || `${page.title} cover`} width={caseScreenDimensions(page.images[0].src).width || page.images[0].width} height={caseScreenDimensions(page.images[0].src).height || page.images[0].height}/></div></div>}
+    {page.coverGallery ? <figure className="case-cover mobile-case-cover"><div className="mobile-cover-grid">{page.coverGallery.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption} full size`}><div className="evidence-image-frame"><img src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height}/></div><span>{img.caption}<ArrowUpRight size={16}/></span></a>)}</div><figcaption>{page.coverCaption || "Actual HaloDish design screens. Open a screen to inspect it at full size."}</figcaption></figure> : page.images[0] && <div className="case-cover"><div className="case-cover-image evidence-image-frame"><img src={page.images[0].src} alt={page.images[0].alt || `${page.title} cover`} width={caseScreenDimensions(page.images[0].src).width || page.images[0].width} height={caseScreenDimensions(page.images[0].src).height || page.images[0].height}/></div></div>}
     <section className="case-story section-pad">
       <CaseChapterNavigation key={path} chapters={(page.designCase ? headings : headings.slice(0,10)).map((title, index) => ({ title, id: caseChapterId(page, title, index) }))}/>
       <article>{renderCaseContent(page, headings)}{page.related && <div className="case-companion"><p>Explore the other side of the E-Afghan experience.</p><Link className="text-link" to={page.related}>{data.pages[page.related].title}<ArrowRight size={18}/></Link></div>}</article>
@@ -266,8 +266,8 @@ function renderCaseContent(page, chapterTitles) {
       if (block.type === "flow") return <ol className="story-flow" aria-label={block.label} key={i}>{block.items.map(text => <li key={text}>{text}</li>)}</ol>;
       if (block.type === "decisions") return <div className="story-decisions" role="region" aria-label="Design decisions, rationale, and screen evidence" key={i}><table><caption>Decisions grounded in the documented screens</caption><thead><tr><th scope="col">Decision</th><th scope="col">Intent</th><th scope="col">Design evidence</th></tr></thead><tbody>{block.rows.map(row => <tr key={row[0]}><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}</tbody></table><dl className="story-decision-mobile">{block.rows.map(row => <div key={row[0]}><dt>{row[0]}</dt><dd><b>Intent</b>{row[1]}</dd><dd><b>Design evidence</b>{row[2]}</dd></div>)}</dl></div>;
       if (block.type === "source-gallery") return <SourceEvidenceGallery key={i} block={block}/>;
-      if (block.type === "image-group") return <figure className="story-visual story-image-group" key={i}><div>{block.images.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption || img.alt} full size`}><div className="screen-preview" data-thumbnail-generation="light"><img data-thumbnail-source src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height} loading="lazy"/></div><span>{img.caption}<ArrowUpRight size={16}/></span></a>)}</div>{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
-      if (block.type === "image") return <figure className="story-visual" key={block.src+i}><a className="image-reveal-frame" data-thumbnail-generation="light" href={block.src} target="_blank" rel="noreferrer" aria-label={`Open ${block.alt || page.title} full size`}><img data-thumbnail-source src={block.src} alt={block.alt || `${page.title} project visual`} width={caseScreenDimensions(block.src).width || block.width} height={caseScreenDimensions(block.src).height || block.height} loading="lazy"/></a>{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
+      if (block.type === "image-group") return <figure className="story-visual story-image-group" key={i}><div>{block.images.map(img => <a key={img.src} href={img.src} target="_blank" rel="noreferrer" aria-label={`Open ${img.caption || img.alt} full size`}><div className="screen-preview"><img src={img.src} alt={img.alt} width={caseScreenDimensions(img.src).width || img.width} height={caseScreenDimensions(img.src).height || img.height} loading="lazy"/></div><span>{img.caption}<ArrowUpRight size={16}/></span></a>)}</div>{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
+      if (block.type === "image") return <figure className="story-visual" key={block.src+i}><a className="evidence-image-frame" href={block.src} target="_blank" rel="noreferrer" aria-label={`Open ${block.alt || page.title} full size`}><img src={block.src} alt={block.alt || `${page.title} project visual`} width={caseScreenDimensions(block.src).width || block.width} height={caseScreenDimensions(block.src).height || block.height} loading="lazy"/></a>{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
       if (block.type.startsWith("h")) {
         const level = Number(block.type.slice(1));
         if (level <= 4) {
@@ -300,7 +300,7 @@ function Articles({ data }) {
   return <main id="main-content" className="inner-page"><PageHero eyebrow="Journal / field notes" title="Thinking in public." copy="22 essays on product design, research, systems, collaboration, and growing through the work." stat="22 / ARTICLES"/><section className="articles-grid section-pad">{items.map((item,i)=><ArticleCard item={item} data={data} index={i} key={item.path}/>)}</section></main>;
 }
 
-function ArticleCard({ item, data, index }) { const cover=data.articleCovers[item.path] || item.images[0]?.src; return <Link className="article-card" to={item.path}><div className="article-cover" data-thumbnail-generation="light">{cover && <img data-thumbnail-source src={cover} alt="" loading="lazy"/>}<span>{String(index+1).padStart(2,"0")}</span></div><small>{item.date || "Field note"} · {Math.max(3,Math.round(item.body.join(" ").split(" ").length/220))} min</small><h3>{item.title}</h3><p>{item.body[0]}</p><span className="read-link">Read article <ArrowRight/></span></Link>; }
+function ArticleCard({ item, data, index }) { const cover=data.articleCovers[item.path] || item.images[0]?.src; return <Link className="article-card" to={item.path}><div className="article-cover">{cover && <img src={cover} alt="" loading="lazy"/>}<span>{String(index+1).padStart(2,"0")}</span></div><small>{item.date || "Field note"} · {Math.max(3,Math.round(item.body.join(" ").split(" ").length/220))} min</small><h3>{item.title}</h3><p>{item.body[0]}</p><span className="read-link">Read article <ArrowRight/></span></Link>; }
 
 function ArticleDetail({ data }) { const path=useLocation().pathname; const page=data.pages[path]; if(!page)return <NotFound/>; const cover=data.articleCovers[path] || page.images[0]?.src; return <main id="main-content" className="article-page"><article><Link to="/articles" className="back-link"><ArrowLeft/> All articles</Link><span className="eyebrow">{page.date} · FIELD NOTE</span><h1>{page.title}</h1><p className="article-deck">{page.body[0]}</p>{cover&&<img className="article-hero-image" src={cover} alt=""/>}<div className="prose">{page.body.slice(1).map((p,i)=>{ const short=p.length<90; return short&&i>0?<h2 key={i}>{p}</h2>:<p key={i}>{p}</p>; })}</div></article></main>; }
 
@@ -316,8 +316,6 @@ function PortfolioApp(){
   }, [workFirst]);
   const {data,error,retry}=useContent();
   const [searchOpen,setSearchOpen]=useState(false);
-  const [introReady,setIntroReady]=useState(false);
-  const revealIntro=useCallback(()=>setIntroReady(true),[]);
   const returnFocus = useRef(null);
   const openSearch = useCallback(event => {
     returnFocus.current = event?.currentTarget || document.activeElement;
@@ -337,7 +335,6 @@ function PortfolioApp(){
   }, [searchOpen, closeSearch, openSearch]);
   useEffect(() => { closeSearch(); }, [pathname, closeSearch]);
   return <>
-    {workFirst && <EditorialIntro onReveal={revealIntro}/>}
     <ScrollReset ready={!!data}/>
     {workFirst ? <EditorialHeader resume={data?.resume} onSearch={openSearch}/> : <PortfolioHeader/>}
     {data ? <>
@@ -365,14 +362,16 @@ function PortfolioApp(){
     </> : <main className="content-status" aria-busy={!error}>
       {error ? <><h1>The work couldn’t load.</h1><p>Please check your connection and try again.</p><button className="pill-link" onClick={retry}>Try again</button></> : <><h1>One moment.</h1><p role="status">Preparing the portfolio…</p><div className="content-skeleton" aria-hidden="true"/></>}
     </main>}
-    <ThumbnailGeneration ready={!!data && (!workFirst || introReady)}/>
-    <ScrollGeneration ready={!!data && (!workFirst || introReady)}/>
     <RouteMetadata pages={data?.pages}/>
   </>;
 }
-function App(){
-  const {pathname}=useLocation();
-  if(pathname.startsWith("/design-systems/"))return <><Routes><Route path="/design-systems/:system/*" element={<SystemDocumentation/>}/></Routes><PortfolioComments/><ScrollGeneration/><RouteMetadata/></>;
-  return <PortfolioApp/>;
+function App() {
+  const { pathname } = useLocation();
+  const page = pathname.startsWith("/design-systems/") ? <>
+    <Routes><Route path="/design-systems/:system/*" element={<SystemDocumentation/>}/></Routes>
+    <PortfolioComments/>
+    <RouteMetadata/>
+  </> : <PortfolioApp/>;
+  return <>{page}<TextEntrance/></>;
 }
 export { App, CaseStudy, CaseCard, INDUSTRIES };

@@ -57,7 +57,7 @@ test("comment placement keeps small and tall panels inside desktop and mobile vi
 test("comment integration preserves private delivery and section selection inside the new shell", () => {
   const main = read("../src/main.jsx"), source = read("../src/portfolio-comments.jsx"), css = read("../src/portfolio-comments.css");
   assert.ok(main.includes("<PortfolioComments enabled={!searchOpen}/>"));
-  assert.match(main, /<SystemDocumentation\/\>.*<PortfolioComments\/\>/);
+  assert.match(main, /<SystemDocumentation\/>[\s\S]*?<PortfolioComments\/>/);
   assert.match(source, /createPortal/);
   assert.match(source, /role="dialog" aria-modal="false"/);
   assert.match(source, /if \(busy.current/);

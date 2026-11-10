@@ -17,12 +17,11 @@ test("Home adds Selected Impact after Hero while preserving the curated work and
     const html = renderToStaticMarkup(React.createElement(MemoryRouter, null, React.createElement(EditorialHome, { data: { resume: "https://drive.google.com/resume" } })));
     const sections = [...html.matchAll(/<section\b[^>]*>/g)].map(match => match[0]);
     assert.match(sections[0], /editorial-hero/);
-    assert.doesNotMatch(sections[0], /data-scroll-generation-skip/);
-    assert.match(html, /id="home-title" data-hero-text-reveal="headline"/);
-    assert.match(html, /<p data-hero-text-reveal="description">/);
-    assert.match(html, /class="hero-actions" data-scroll-generation-skip/);
-    assert.match(html, /class="editorial-hero-art" data-scroll-generation-skip/);
-    assert.doesNotMatch(html, /data-scroll-generation="idle"/);
+    assert.match(html, /id="home-title"/);
+    assert.match(html, /<p class="hero-description">/);
+    assert.match(html, /class="hero-actions"/);
+    assert.match(html, /class="editorial-hero-art"/);
+    assert.doesNotMatch(html, /data-scroll-generation|data-hero-text-reveal|data-thumbnail-generation/);
     assert.match(sections[1], /id="selected-impact"/);
     assert.match(sections[2], /id="selected-work"/);
     assert.match(sections[3], /antiflex-spotlight/);
@@ -30,13 +29,13 @@ test("Home adds Selected Impact after Hero while preserving the curated work and
     assert.doesNotMatch(html, /editorial-impact|editorial-category-grid|engineering-evidence|editorial-ai|editorial-film/);
     assert.equal((html.match(/class="featured-work-card"/g) || []).length, 3);
     assert.match(html, /7\+ years/);
-    assert.match(html, /class="hero-role" data-scroll-generation-skip/);
+    assert.match(html, /class="hero-role"/);
     assert.ok(html.indexOf('Senior Product Designer') < html.indexOf('id="home-title"'));
     assert.match(html, /SaaS &amp; Developer Tools/);
     assert.match(html, /Designing products<br\/>that scale and create<br\/>real impact/);
     assert.match(html, /usable, scalable, and measurable product experiences/);
     assert.match(html, /SaaS, CRM, e-commerce, trading platforms, design systems, and developer tools/);
-    assert.match(html, /aria-label="Specialties" data-scroll-generation-skip/);
+    assert.match(html, /aria-label="Specialties"/);
     assert.match(html, /<li>Enterprise SaaS<\/li><li>Design Systems<\/li><li>UX Engineering<\/li>/);
     assert.match(html, /View Selected Work/);
     assert.match(html, /href="\/#selected-work"/);
@@ -48,7 +47,7 @@ test("Home adds Selected Impact after Hero while preserving the curated work and
     assert.doesNotMatch(html, /<dt>Outcome<\/dt>|Explore Component documentation/);
     assert.match(html, /Explore antiflex\/ui/);
     assert.doesNotMatch(html, /featured-reveal-control|featured-ui-layer|Reveal UI|Hover to reveal the original UI/);
-    assert.equal((html.match(/data-thumbnail-generation="light" class="featured-work-image"/g) || []).length, 3);
+    assert.equal((html.match(/class="featured-work-image"/g) || []).length, 3);
     assert.ok(!html.includes("+1,296%")); // HaloDish acquisition is not one of these four results.
     assert.doesNotMatch(html, /<a\b[^>]*>(?:(?!<\/a>)[\s\S])*<button/);
     assert.doesNotMatch(html, /expertise-collage|type-composition-line/);

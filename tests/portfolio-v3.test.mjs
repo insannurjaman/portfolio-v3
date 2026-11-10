@@ -46,7 +46,7 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
     }
     assert.match(html, /<summary>All 8 recommendations<\/summary>/);
     assert.match(html, /id="contact"/);
-    assert.doesNotMatch(html, /role="switch"|aria-label="Next testimonial"/);
+    assert.doesNotMatch(html, /role="switch"|aria-label="Next testimonial"|data-scroll-generation|data-thumbnail-generation/);
   } finally {
     await server.close();
   }

@@ -1,0 +1,3 @@
+.evidence-image-frame { display: block; min-width: 0; overflow: clip; border-radius: 3px; }
+.case-cover-image > img { display: block; width: 100%; height: auto; max-height: 800px; object-fit: contain; background: var(--panel); border-radius: 5px; }
+.portal-case.system-case .case-cover-image { max-width: 457px; margin-inline: auto; }

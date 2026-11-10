@@ -99,7 +99,7 @@ function HomeTestimonials({ interactive }) {
 }
 
 export function PortfolioHome({ data, interactive = true }) {
-  return <main className="portfolio-home" id="main-content" tabIndex={-1} data-scroll-generation-skip>
+  return <main className="portfolio-home" id="main-content" tabIndex={-1}>
     <section className="home-profile" aria-labelledby="home-title">
       <img className="home-portrait" src={PORTFOLIO_PORTRAIT} alt="" width="48" height="48" fetchPriority="high"/>
       <div><h1 id="home-title">Insan Nurjaman</h1><p className="home-role">Product Designer &amp; Builder</p></div>

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { animateFeedback, EDITORIAL_EASE } from "./motion-feedback.js";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, Search, X } from "lucide-react";
-import { beginEditorialIntro } from "./editorial-intro.js";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { BACKGROUND_MEDIA } from "./background-media.js";
 
@@ -92,31 +91,6 @@ export function EditorialHeader({ resume = RESUME_URL, onSearch }) {
   </>;
 }
 
-export function EditorialIntro({ onReveal }) {
-  const [show, setShow] = useState(true);
-  const [leaving, setLeaving] = useState(false);
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const picture = new Image();
-    picture.src = BACKGROUND_MEDIA.hero.poster;
-    return beginEditorialIntro({
-      ready: Promise.all([document.fonts.ready, picture.decode()]), reduced,
-      onReveal: () => { setLeaving(true); onReveal(); },
-      onComplete: () => setShow(false),
-    });
-  }, [onReveal]);
-  return show ? <div className={`editorial-intro${leaving ? " is-leaving" : ""}`} aria-hidden="true">
-    <div className="intro-wordmark"><b>insan</b><span>NURJAMAN</span></div>
-    <div className="intro-frame">
-      <div className="intro-images">
-        <picture><img src={BACKGROUND_MEDIA.hero.poster} alt="" width="1920" height="1080" onError={event => { event.currentTarget.style.display = "none"; }}/></picture>
-        <picture className="intro-preview"><source media="(max-width: 599px)" srcSet="/media/editorial/mobile-card.jpg"/><img src="/media/editorial/mobile.jpg" alt="" width="1024" height="1536" onError={event => { event.currentTarget.parentElement.style.display = "none"; }}/></picture>
-      </div>
-      {["tl", "tr", "bl", "br"].map(corner => <svg className={`intro-corner intro-corner-${corner}`} key={corner} viewBox="0 0 30 30"><path d="M0 30H30V0C27 15 15 27 0 30Z"/></svg>)}
-    </div>
-  </div> : null;
-}
-
 function FooterVideo() {
   const container = useRef(null), video = useRef(null);
   const [ready, setReady] = useState(false), [failed, setFailed] = useState(false);
@@ -146,7 +120,7 @@ function FooterVideo() {
     preference.addEventListener("change", update);
     return () => { active = false; observer.disconnect(); document.removeEventListener("visibilitychange", sync); preference.removeEventListener("change", update); media.pause(); };
   }, [enabled, reduced, failed]);
-  return <div className="footer-media" ref={container} data-video-ready={ready && !reduced && !failed} aria-hidden="true" data-scroll-generation-skip>
+  return <div className="footer-media" ref={container} data-video-ready={ready && !reduced && !failed} aria-hidden="true">
     <img src={BACKGROUND_MEDIA.footer.poster} alt="" loading="lazy" width="1920" height="1080"/>
     <video ref={video} poster={BACKGROUND_MEDIA.footer.poster} muted loop playsInline preload={enabled ? "metadata" : "none"} onPlaying={() => setReady(true)} onError={() => { setFailed(true); setReady(false); }}>
       {enabled && !reduced && <><source src={BACKGROUND_MEDIA.footer.webm} type='video/webm; codecs="vp9"'/><source src={BACKGROUND_MEDIA.footer.mp4} type="video/mp4"/></>}

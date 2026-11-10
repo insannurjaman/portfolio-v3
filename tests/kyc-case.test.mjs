@@ -63,8 +63,8 @@ test('source galleries use native keyboard disclosure and full-size local eviden
       assert.match(html, /<details class="source-evidence-gallery"><summary/);
       assert.doesNotMatch(html, /<details[^>]* open/);
       assert.equal((html.match(/loading="lazy"/g) || []).length, block.images.length);
-      assert.equal((html.match(/data-thumbnail-generation="light"/g) || []).length, block.images.length);
-      assert.equal((html.match(/data-thumbnail-source/g) || []).length, block.images.length);
+      assert.equal((html.match(/class="evidence-image-frame"/g) || []).length, block.images.length);
+      assert.equal((html.match(/<img /g) || []).length, block.images.length);
       for (const image of block.images) {
         assert.ok(html.includes(`href="${image.src}"`));
         assert.ok(html.includes(`width="${image.width}" height="${image.height}"`));

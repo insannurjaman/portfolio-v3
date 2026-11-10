@@ -13,19 +13,8 @@
   padding-bottom: 48px;
 }
 .about-portrait { margin: 0; min-width: 0; border-radius: 0; overflow: hidden; background: #16130e; }
-.portrait-frame { position: relative; aspect-ratio: 1600 / 1589; isolation: isolate; animation: about-portrait-settle .75s cubic-bezier(.16,1,.3,1) both; }
+.about-portrait { aspect-ratio: 1600 / 1589; }
 .about-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.portrait-original { --portrait-mask: radial-gradient(circle clamp(88px, 12vw, 160px) at var(--portrait-x, 50%) var(--portrait-y, 45%), #000 0 70%, transparent 100%); position: absolute; inset: 0; opacity: 0; pointer-events: none; -webkit-mask-image: var(--portrait-mask); mask-image: var(--portrait-mask); transition: opacity .24s ease-out; }
-.portrait-frame.is-exploring .portrait-original { opacity: 1; }
-.portrait-frame:is(.is-revealed,.is-original-only) .portrait-original { --portrait-mask: none; opacity: 1; }
-.portrait-reveal-control { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; color: var(--text); cursor: pointer; touch-action: pan-y; }
-.about-page .portrait-reveal-control:focus-visible { outline-offset: -6px; }
-.portrait-reveal-hint { position: absolute; bottom: 16px; right: 16px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); font: 400 12px/1.5 var(--font-sans); }
-.portrait-hint-touch { display: none; }
-@media (max-width: 900px), (hover: none), (pointer: coarse) { .portrait-hint-pointer { display: none; } .portrait-hint-touch { display: inline; } }
-.portrait-reveal-control:focus-visible .portrait-reveal-hint::after { content: " · Enter / Space"; }
-.about-portrait-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: var(--panel); color: var(--text); }
-.about-portrait-fallback button { min-height: 44px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 0; background: var(--bg); cursor: pointer; }
 .about-introduction { min-width: 0; }
 .about-introduction h1 { margin: 0 0 20px; font-size: clamp(48px, 5.7vw, 88px); font-weight: 600; line-height: 1.06; letter-spacing: -.04em; text-wrap: balance; }
 .about-role { margin: 0 0 28px; font-size: clamp(24px, 2.7vw, 40px); font-weight: 400; line-height: 1.25; letter-spacing: -.035em; color: var(--about-copy); }
@@ -90,7 +79,6 @@ footer.about-footer { max-width: 1600px; min-height: 0; padding: 24px var(--pad)
 .about-footer-bottom nav { display: flex; flex-wrap: wrap; gap: 24px; }
 .about-footer-bottom nav a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 .about-footer-bottom nav svg { width: 14px; }
-@keyframes about-portrait-settle { from { clip-path: inset(0 1.5% 1.5% 0 round 8px); filter: brightness(.94); } to { clip-path: inset(0 round 8px); filter: brightness(1); } }
 @media (max-width: 1100px) and (min-width: 901px) {
   .about-biography { font-size: 16px; line-height: 1.65; }
   .about-role { margin-bottom: 20px; }
@@ -141,8 +129,6 @@ footer.about-footer { max-width: 1600px; min-height: 0; padding: 24px var(--pad)
   .about-footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .portrait-frame { animation: none; }
-  .portrait-original { --portrait-mask: none; transition: none; }
   .about-primary,.about-text-link,.about-email-actions button { transition: none; }
 }
 /* Availability is owner-confirmed; contact stays a direct email action. */

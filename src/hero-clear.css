@@ -23,7 +23,7 @@
   max-width: 64%;
 }
 
-.editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p[data-hero-text-reveal="description"] {
+.editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p.hero-description {
   max-width: min(460px, 44vw);
 }
 
@@ -64,7 +64,7 @@
     max-width: none;
     font-size: 48px;
   }
-  .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p[data-hero-text-reveal="description"] {
+  .editorial-hero[data-hero-composition="clear"] .editorial-hero-copy > p.hero-description {
     max-width: 500px;
   }
 }

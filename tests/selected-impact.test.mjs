@@ -29,8 +29,7 @@ test('impact renders readable without JavaScript or a number animation, with acc
   try {
     const { SelectedImpact } = await server.ssrLoadModule('/src/selected-impact.jsx');
     const html = renderToStaticMarkup(React.createElement(MemoryRouter,null,React.createElement(SelectedImpact)));
-    assert.doesNotMatch(html, /data-scroll-generation-skip|data-scroll-generation="idle"|opacity:\s*0/);
-    assert.equal((html.match(/data-scroll-generation-contents/g)||[]).length, 2);
+    assert.doesNotMatch(html, /data-scroll-generation|opacity:\s*0/);
     assert.equal((html.match(/<article /g)||[]).length, 4);
     assert.equal((html.match(/<h2 /g)||[]).length, 1);
     assert.equal((html.match(/<h3 /g)||[]).length, 4);

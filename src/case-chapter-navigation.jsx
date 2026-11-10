@@ -103,7 +103,7 @@ export function CaseChapterNavigation({ chapters }) {
   }, [open]);
 
   const position = `${String(active + 1).padStart(2, "0")} / ${String(chapters.length).padStart(2, "0")}`;
-  return <aside ref={root} className={`case-chapter-nav${open ? " is-open" : ""}`} data-scroll-generation-skip>
+  return <aside ref={root} className={`case-chapter-nav${open ? " is-open" : ""}`}>
     <div className="case-chapter-heading"><span>On this page</span><span className="case-chapter-count" aria-label={`Chapter ${active + 1} of ${chapters.length}`}>{position}</span></div>
     <button ref={toggle} className="case-chapter-toggle" type="button" aria-expanded={open} aria-controls="case-chapter-links" onClick={() => setOpen(value => !value)}>
       <span><span className="case-chapter-mobile-label">On this page</span><span className="case-chapter-mobile-title">{chapters[active]?.title}</span></span>

@@ -136,8 +136,8 @@ test("the production case renderer exposes eight numbered chapters and valid in-
       assert.doesNotMatch(html, /Read project summary/, `Summary action is temporarily hidden on ${path}`);
       assert.doesNotMatch(html, /class="text-link case-source-link"/, `Source action is temporarily hidden on ${path}`);
       assert.match(html, /aria-label="Case study chapters"/);
-      assert.match(html, /data-thumbnail-generation="light"/, `Source-image reveal stage is available on ${path}`);
-      assert.match(html, /data-thumbnail-source/, `The native evidence image remains available on ${path}`);
+      assert.match(html, /evidence-image-frame/, `Source images retain their frame on ${path}`);
+      assert.match(html, /<img[^>]+src="/, `The native evidence image remains available on ${path}`);
       assert.doesNotMatch(html, /data-thumbnail-phase=/, `No-JS evidence remains visible on ${path}`);
       assert.equal([...html.matchAll(/aria-current="location"/g)].length, 1, `One active reading chapter on ${path}`);
       assert.ok(!html.includes("undefined"), path);
