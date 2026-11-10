@@ -119,6 +119,12 @@
   color: var(--text);
   font: 400 16px/20px var(--font-sans);
 }
+.home-contact-form :is(input, textarea):focus {
+  border-color: var(--focus);
+  /* Keep the focus indicator on the border in forced colors. */
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+}
 .home-contact-form textarea { resize: vertical; }
 .home-contact-form button {
   display: inline-flex;
