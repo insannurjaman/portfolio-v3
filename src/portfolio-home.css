@@ -90,38 +90,10 @@
 .home-spotlight { display: block; position: relative; }
 .home-spotlight .home-card-image { aspect-ratio: 576 / 360; object-fit: cover; }
 
-.home-testimonials { display: grid; gap: 16px; }
-.home-testimonials-heading, .home-testimonials-arrows { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
-.home-testimonials-heading h2 { color: var(--muted); font-weight: 400; }
-.home-testimonials button { display: grid; place-items: center; min-width: 28px; min-height: 28px; border: 0; border-radius: 999px; background: transparent; padding: 0; }
-.home-testimonials button:hover { background: var(--panel); }
-.home-testimonials-arrows img { max-width: none; filter: var(--logo-filter); }
-.home-testimonial { display: grid; gap: 20px; }
-.home-testimonial blockquote { margin: 0; color: var(--muted); font-size: 16px; line-height: 26px; }
-.home-testimonial blockquote p { line-height: inherit; }
-.home-testimonial blockquote p + p { margin-top: 12px; }
-#home-testimonial blockquote { min-height: 78px; }
-.home-testimonial figcaption { display: flex; align-items: center; gap: 12px; font-size: 14px; }
-.home-testimonial figcaption img { flex: none; border-radius: 50%; object-fit: cover; }
-.home-testimonial figcaption div { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 8px; }
-.home-testimonial figcaption b { font-weight: 500; }
-.home-testimonial figcaption span { color: var(--muted); font-size: 12px; }
-.home-testimonial-dots { display: flex; gap: 2px; }
-.home-testimonial-dots button span { width: 6px; height: 6px; border-radius: 99px; background: var(--control-border); }
-.home-testimonial-dots button[aria-current] span { width: 20px; background: var(--muted); }
-.home-all-recommendations { color: var(--muted); font-size: 12px; }
-.home-all-recommendations summary { display: list-item; width: fit-content; padding-block: 6px; cursor: pointer; }
-.home-all-recommendations summary:hover, .home-all-recommendations a:hover { color: var(--text); }
-.home-all-recommendations ul { display: grid; gap: 24px; margin: 16px 0; padding: 0; list-style: none; }
-.home-all-recommendations li { padding-block: 16px; border-top: 1px solid var(--line); }
-.home-all-recommendations figcaption b { color: var(--text); }
-.home-all-recommendations a { text-decoration: underline; text-underline-offset: 3px; }
-
 @media (max-width: 520px) {
   .portfolio-home { padding-top: 112px; }
   .home-card-grid { grid-template-columns: minmax(0, 1fr); }
   .home-companies { --company-logo-gap: 32px; }
-  .home-profile-actions a, .home-testimonials button, .home-all-recommendations summary { min-height: 44px; }
-  .home-all-recommendations summary { padding-block: 13px; }
+  .home-profile-actions a { min-height: 44px; }
   .home-card p { font-size: 14px; line-height: 1.55; }
 }

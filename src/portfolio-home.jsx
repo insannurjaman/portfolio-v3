@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { KYC_CASE_PATH, KYC_SCREENS } from "./kyc-content.js";
@@ -6,7 +6,7 @@ import { PROJECT_THUMBNAIL_OVERRIDES, ANTIFLEX_UI_THUMBNAIL } from "./project-th
 import { ANTIFLEX_UI } from "./antiflex-project.js";
 import { PORTFOLIO_LINKEDIN, PORTFOLIO_PORTRAIT } from "./portfolio-shell.jsx";
 import { GitHubContributions } from "./github-contributions.jsx";
-import recommendationContent from "./recommendations-content.json";
+import { Recommendations } from "./recommendations.jsx";
 import "./portfolio-home.css";
 
 const art = "/brand/portfolio-home";
@@ -31,10 +31,6 @@ const brands = [
   ["tokopedia", "Tokopedia", 147, 29],
   ["eftax", "Eftax", 55, 35],
 ];
-const featuredRecommendations = ["adi-ritonga", "bonie-rimba-celebica", "utari-ambarwati"].map(id =>
-  recommendationContent.recommendations.find(item => item.id === id),
-);
-
 function CompanyLogoList({ duplicate = false }) {
   return <ul role="list" aria-hidden={duplicate || undefined}>
     <li className="home-saphyte-logo"><span className="sr-only">Saphyte</span>
@@ -72,49 +68,6 @@ function HomeCard({ project, selected = false }) {
   </article>;
 }
 
-function TestimonialAuthor({ item, portrait = false }) {
-  return <figcaption>
-    {portrait && <img src={item.photo} width="36" height="36" loading="lazy" alt=""/>}
-    <div><b>{item.name}</b><span>{item.roleLabel}</span></div>
-  </figcaption>;
-}
-
-function HomeTestimonials({ interactive }) {
-  const [active, setActive] = useState(0);
-  const item = featuredRecommendations[active];
-  const count = featuredRecommendations.length;
-  const move = step => setActive(index => (index + step + count) % count);
-
-  return <section className="home-testimonials" id="recommendations" aria-labelledby="home-testimonials-title">
-    <div className="home-testimonials-heading">
-      <h2 id="home-testimonials-title">Testimonials</h2>
-      {interactive && <div className="home-testimonials-arrows">
-        <button type="button" aria-label="Previous testimonial" aria-controls="home-testimonial" onClick={() => move(-1)}><img src={`${art}/previous.svg`} alt=""/></button>
-        <button type="button" aria-label="Next testimonial" aria-controls="home-testimonial" onClick={() => move(1)}><img src={`${art}/next.svg`} alt=""/></button>
-      </div>}
-    </div>
-    <div id="home-testimonial" aria-live="polite" aria-atomic="true">
-      <figure className="home-testimonial">
-        <blockquote><p>“{item.excerpt}{item.excerptIncomplete ? "…" : ""}”</p></blockquote>
-        <TestimonialAuthor item={item} portrait/>
-      </figure>
-    </div>
-    {interactive && <div className="home-testimonial-dots" role="group" aria-label="Choose a testimonial">
-      {featuredRecommendations.map((testimonial, index) => <button key={testimonial.id} type="button" aria-label={`Testimonial ${index + 1} of ${count} from ${testimonial.name}`} aria-current={active === index ? "true" : undefined} aria-controls="home-testimonial" onClick={() => setActive(index)}><span aria-hidden="true"/></button>)}
-    </div>}
-    <details className="home-all-recommendations" id="all-recommendations">
-      <summary>All {recommendationContent.recommendations.length} recommendations</summary>
-      <ul>{recommendationContent.recommendations.map(recommendation => <li key={recommendation.id}>
-        <figure className="home-testimonial">
-          <blockquote>{recommendation.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</blockquote>
-          <TestimonialAuthor item={recommendation}/>
-        </figure>
-      </li>)}</ul>
-      <a href={recommendationContent.sourceUrl} target="_blank" rel="noopener noreferrer">View on LinkedIn</a>
-    </details>
-  </section>;
-}
-
 export function PortfolioHome({ data, interactive = true }) {
   return <main className="portfolio-home" id="main-content" tabIndex={-1}>
     <section className="home-profile" aria-labelledby="home-title">
@@ -145,6 +98,6 @@ export function PortfolioHome({ data, interactive = true }) {
         <HomeCover image={ANTIFLEX_UI_THUMBNAIL}/>
       </a>
     </section>
-    <HomeTestimonials interactive={interactive}/>
+    <Recommendations compact interactive={interactive}/>
   </main>;
 }

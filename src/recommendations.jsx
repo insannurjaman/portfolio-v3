@@ -24,14 +24,15 @@ function Recommendation({ item, index, count, expanded, onToggle }) {
   </li>;
 }
 
-export function Recommendations() {
+export function Recommendations({ compact = false, interactive = true }) {
   const items = content.recommendations;
+  const titleId = compact ? "home-testimonials-title" : "recommendations-title";
   const railRef = useRef(null);
   const [expanded, setExpanded] = useState(null);
   const [range, setRange] = useState({ first: 1, last: 3, previous: false, next: true });
   useEffect(() => {
     const rail = railRef.current;
-    if (!rail) return;
+    if (!interactive || !rail) return;
     let frame = 0;
     const measure = () => {
       const bounds = rail.getBoundingClientRect();
@@ -46,7 +47,7 @@ export function Recommendations() {
     window.addEventListener("resize", schedule);
     measure();
     return () => { rail.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); observer?.disconnect(); cancelAnimationFrame(frame); };
-  }, [items.length]);
+  }, [interactive, items.length]);
   const move = direction => {
     const rail = railRef.current;
     if (!rail?.firstElementChild) return;
@@ -60,17 +61,20 @@ export function Recommendations() {
     else railRef.current?.scrollTo({ left: event.key === "Home" ? 0 : railRef.current.scrollWidth, behavior: "instant" });
   };
   const onToggle = (id, isOpen) => setExpanded(current => isOpen ? id : current === id ? null : current);
-  return <section className="recommendations section-pad" id="recommendations" aria-labelledby="recommendations-title">
+  return <section className={`recommendations ${compact ? "home-testimonials" : "section-pad"}`} id="recommendations" aria-labelledby={titleId}>
     <div className="recommendations-header">
-      <div className="recommendations-intro"><h2 id="recommendations-title">Words from people I’ve worked with.</h2><p>Recommendations from teammates, managers, and mentors.</p></div>
-      <div className="recommendations-controls" aria-label="Recommendation controls">
+      <div className="recommendations-intro">
+        <h2 id={titleId}>{compact ? "Testimonials" : "Words from people I’ve worked with."}</h2>
+        {!compact && <p>Recommendations from teammates, managers, and mentors.</p>}
+      </div>
+      {interactive && <div className="recommendations-controls" aria-label="Recommendation controls">
         <button type="button" aria-label="Previous recommendation" aria-controls="recommendations-list" disabled={!range.previous} onClick={() => move(-1)}><ArrowLeft size={22} aria-hidden="true"/></button>
         <button type="button" aria-label="Next recommendation" aria-controls="recommendations-list" disabled={!range.next} onClick={() => move(1)}><ArrowRight size={22} aria-hidden="true"/></button>
-      </div>
+      </div>}
     </div>
-    <ul ref={railRef} className="recommendations-list" id="recommendations-list" tabIndex={0} onKeyDown={onKeyDown} aria-label="Received LinkedIn recommendations. Use left and right arrow keys to scroll.">{items.map((item, index) => <Recommendation key={item.id} item={item} index={index} count={items.length} expanded={expanded === item.id} onToggle={onToggle}/>)}</ul>
+    <ul ref={railRef} className="recommendations-list" id="recommendations-list" role="list" tabIndex={0} onKeyDown={interactive ? onKeyDown : undefined} aria-label="Received LinkedIn recommendations. Use left and right arrow keys to scroll.">{items.map((item, index) => <Recommendation key={item.id} item={item} index={index} count={items.length} expanded={expanded === item.id} onToggle={onToggle}/>)}</ul>
     <div className="recommendations-footer">
-      <p><span role="status" aria-live="polite">{range.first}–{range.last} of {items.length}</span> · Swipe or use the arrows</p>
+      <p>{interactive ? <><span role="status" aria-live="polite">{range.first}–{range.last} of {items.length}</span> · Swipe or use the arrows</> : "Scroll to see more recommendations"}</p>
       <a href={content.sourceUrl} target="_blank" rel="noopener noreferrer">Read on LinkedIn <ArrowUpRight size={18} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>
     </div>
     <p className="recommendations-source-note">Excerpts from received LinkedIn recommendations. Roles are shown as supplied.</p>

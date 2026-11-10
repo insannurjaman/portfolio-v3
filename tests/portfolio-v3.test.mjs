@@ -25,8 +25,8 @@ test("new homepage renders the Figma content order, correct case links and all o
     assert.match(html, /href="\/pixel-round"/);
     assert.match(html, /href="\/uiqa"/);
     assert.match(html, /href="https:\/\/antiflex-ui.vercel.app\//);
-    assert.equal((html.match(/aria-label="Testimonial \d of 3/g) || []).length, 3);
-    assert.equal((html.split('id="all-recommendations"')[1].match(/<li>/g) || []).length, 8);
+    assert.match(html, /aria-controls="recommendations-list"/);
+    assert.equal((html.match(/class="recommendation-entry"/g) || []).length, 8);
     assert.doesNotMatch(html, /Sergio Torreguitart|figma.com\/api\/mcp\/asset/);
     for (const [, source] of html.matchAll(/<img[^>]*src="(\/[^"]+)"/g)) {
       assert.ok(existsSync(new URL(`../public${source}`, import.meta.url)), source);
@@ -45,9 +45,10 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
     for (const path of ["/", "/work", "/about", "/side-projects", "/#contact", "/design-systems", "/articles", "/industries"]) {
       assert.ok(html.includes(`href="${path}"`), path);
     }
-    assert.match(html, /<summary>All 8 recommendations<\/summary>/);
+    assert.match(html, /id="recommendations-list"/);
+    assert.equal((html.match(/class="recommendation-full"/g) || []).length, 8);
     assert.match(html, /id="contact"/);
-    assert.doesNotMatch(html, /role="switch"|aria-label="Next testimonial"|data-scroll-generation|data-thumbnail-generation/);
+    assert.doesNotMatch(html, /role="switch"|aria-label="Next recommendation"|data-scroll-generation|data-thumbnail-generation/);
   } finally {
     await server.close();
   }
