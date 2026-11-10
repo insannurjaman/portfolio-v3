@@ -10,13 +10,13 @@ import { MemoryRouter } from "react-router-dom";
 const create = React.createElement;
 const render = (...elements) => renderToStaticMarkup(create(MemoryRouter, { initialEntries: ["/"] }, ...elements));
 
-test("new homepage renders the Figma content order, correct case links and all original recommendations", async () => {
+test("homepage renders the portfolio sections in order, correct case links and all original recommendations", async () => {
   const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false }, appType: "custom" });
   try {
     const { PortfolioHome } = await server.ssrLoadModule("/src/portfolio-home.jsx");
     const html = render(create(PortfolioHome));
     assert.deepEqual([...html.matchAll(/<section\b[^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]),
-      ["home-title", "home-github-title", "home-companies-title", "selected-work-title", "shipped-projects-title", "home-testimonials-title"]);
+      ["home-title", "home-github-title", "home-companies-title", "selected-work-title", "shipped-projects-title", "home-experience-title", "home-testimonials-title"]);
     assert.deepEqual([...html.matchAll(/<a[^>]*data-funnel="selected_case" href="([^"]+)"/g)].map(match => match[1]),
       ["/halodish-apps", "/improve-otp-push-notification", "/ags-onboarding", "/saphyte-kyc-verification"]);
     assert.match(html, /Trusted design partner for companies worldwide/);
@@ -42,12 +42,14 @@ test("the static homepage keeps navigation, contact and full quotes without JS c
     const { PortfolioHome } = await server.ssrLoadModule("/src/portfolio-home.jsx");
     const { PortfolioHeader, PortfolioFooter } = await server.ssrLoadModule("/src/portfolio-shell.jsx");
     const html = render(create(PortfolioHeader, { interactive: false }), create(PortfolioHome, { interactive: false }), create(PortfolioFooter));
-    for (const path of ["/", "/work", "/about", "/side-projects", "/#contact", "/design-systems", "/articles", "/industries"]) {
+    for (const path of ["/", "/work", "/side-projects", "/#contact", "/design-systems", "/articles", "/industries"]) {
       assert.ok(html.includes(`href="${path}"`), path);
     }
     assert.match(html, /id="recommendations-list"/);
     assert.equal((html.match(/class="recommendation-full"/g) || []).length, 8);
     assert.match(html, /id="contact"/);
+    assert.match(html, /id="experience"/);
+    assert.doesNotMatch(html, /href="\/about"/);
     assert.doesNotMatch(html, /role="switch"|aria-label="Next recommendation"|data-scroll-generation|data-thumbnail-generation/);
   } finally {
     await server.close();

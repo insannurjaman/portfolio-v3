@@ -86,7 +86,7 @@ export const workCollectionSearchPages = Object.fromEntries([
 // an older project by its title, without filling broad queries with archived prose.
 export function portfolioSearchResults(pages, query = "") {
   const q = query.trim().toLowerCase();
-  if (!q) return [...CURATED_CASE_PATHS, "/about", "/side-projects"].map(path => pages[path]).filter(Boolean);
+  if (!q) return [...CURATED_CASE_PATHS, "/#experience", "/side-projects"].map(path => pages[path]).filter(Boolean);
   const archived = new Set(WORK_PROJECTS.filter(item => item.kind === "case" && !isCuratedCase(item.path)).map(item => item.path));
   return Object.values(pages).filter(page => {
     if (page.path === "/404") return false;

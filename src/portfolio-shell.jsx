@@ -11,7 +11,6 @@ export const PORTFOLIO_LINKEDIN = "https://www.linkedin.com/in/insannurjaman/";
 const navigation = [
   ["Home", "/"],
   ["Portfolio", "/work"],
-  ["Story", "/about"],
   ["Projects", "/side-projects"],
   ["Connect", "/#contact"],
 ];

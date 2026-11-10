@@ -85,7 +85,7 @@ const CASE_STUDY_NAV_LABELS = new Set([
 ]);
 
 export function enrichPortfolioContent(content) {
-  return { ...content, pages: { ...content.pages, ...eAfghanPages, ...diverMenuPages, ...haloDishPages, ...agsPages, ...agsPricingPages, ...clientPortalPages, ...designSystemPages, ...gococoPages, ...kycPages, ...workCollectionSearchPages, "/design-systems": designSystemsSearchPage, "/uiqa": uiqaSearchPage, "/side-projects": sideProjectsSearchPage, "/ai-practice": aiPracticeSearchPage, "/about#experience": experienceSearchPage, "/about": aboutSearchPage } };
+  return { ...content, pages: { ...content.pages, ...eAfghanPages, ...diverMenuPages, ...haloDishPages, ...agsPages, ...agsPricingPages, ...clientPortalPages, ...designSystemPages, ...gococoPages, ...kycPages, ...workCollectionSearchPages, "/design-systems": designSystemsSearchPage, "/uiqa": uiqaSearchPage, "/side-projects": sideProjectsSearchPage, "/ai-practice": aiPracticeSearchPage, [experienceSearchPage.path]: experienceSearchPage, "/about": aboutSearchPage } };
 }
 
 function useContent() {
@@ -112,10 +112,6 @@ function ScrollReset({ ready }) {
     if (location.state?.preserveWorkScroll && location.pathname.startsWith("/work/")) return;
     if (location.pathname === "/about" && location.hash === "#tools") {
       navigate("/side-projects", { replace: true });
-      return;
-    }
-    if (location.pathname === "/" && location.hash === "#experience") {
-      navigate("/about#experience", { replace: true });
       return;
     }
     return resetRouteScroll(location.hash);

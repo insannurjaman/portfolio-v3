@@ -56,9 +56,30 @@ export const EXPERIENCE = [
 ];
 
 export const experienceSearchPage = {
-  path: "/about#experience", title: "Work experience | Insan Nurjaman",
-  body: [EXPERIENCE.map(item => `${item.company} ${item.role} ${item.period} ${item.type}. ${item.summary} ${item.highlights.join(" ")}`).join(". ")], images: [],
+  path: "/#experience", title: "Work experience | Insan Nurjaman",
+  body: [EXPERIENCE.map(item => `${item.company} ${item.role} ${item.period} ${item.type}. ${item.summary}`).join(" ")], images: [],
 };
+
+function ExperiencePeriod({ item }) {
+  const [start, end] = item.period.split(" – ");
+  return <><time dateTime={item.start}>{start}</time>{" – "}<time dateTime={item.end}>{end}</time></>;
+}
+
+export function HomeExperience() {
+  return <section className="home-experience" id="experience" aria-labelledby="home-experience-title">
+    <h2 id="home-experience-title">Experience</h2>
+    <ol className="home-experience-list" role="list">
+      {EXPERIENCE.map(item => <li key={item.id}>
+        <div className="home-experience-heading">
+          <h3>{item.role} <span className="home-experience-company"><span aria-hidden="true">· </span>{item.company}</span></h3>
+          <span className="home-experience-period"><ExperiencePeriod item={item}/></span>
+        </div>
+        <p className="home-experience-context">{item.location}, {item.type}</p>
+        <p className="home-experience-summary">{item.summary}</p>
+      </li>)}
+    </ol>
+  </section>;
+}
 
 const COMPANY_LOGOS = {
   loyica: { src: "/brand/experience/saphyte-116e5cde.jpg", fullBleed: true, initials: "S" },
@@ -96,7 +117,7 @@ export function ExperienceSection({ resume }) {
             <h3 className="experience-entry-heading">
               <span className="experience-role">{item.role}</span>
               <span className="experience-company">{item.company}</span>
-              <span className="experience-date"><time dateTime={item.start}>{item.period.split(" – ")[0]}</time><span> – </span><time dateTime={item.end}>{item.period.split(" – ")[1]}</time></span>
+              <span className="experience-date"><ExperiencePeriod item={item}/></span>
             </h3>
             <ChevronDown className="experience-chevron" size={22} aria-hidden="true"/>
             <span className="experience-description" id={`experience-description-${item.id}`}>{item.summary}</span>

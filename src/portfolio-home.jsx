@@ -6,6 +6,7 @@ import { PROJECT_THUMBNAIL_OVERRIDES, ANTIFLEX_UI_THUMBNAIL } from "./project-th
 import { ANTIFLEX_UI } from "./antiflex-project.js";
 import { PORTFOLIO_LINKEDIN, PORTFOLIO_PORTRAIT } from "./portfolio-shell.jsx";
 import { GitHubContributions } from "./github-contributions.jsx";
+import { HomeExperience } from "./experience.jsx";
 import { Recommendations } from "./recommendations.jsx";
 import "./portfolio-home.css";
 
@@ -98,6 +99,7 @@ export function PortfolioHome({ data, interactive = true }) {
         <HomeCover image={ANTIFLEX_UI_THUMBNAIL}/>
       </a>
     </section>
+    <HomeExperience/>
     <Recommendations compact interactive={interactive}/>
   </main>;
 }
