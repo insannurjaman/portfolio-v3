@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { KYC_CASE_PATH, KYC_SCREENS } from "./kyc-content.js";
@@ -69,11 +69,42 @@ function HomeCard({ project, selected = false }) {
   </article>;
 }
 
+function AvailabilityBadge({ interactive }) {
+  const badge = useRef(null);
+
+  useEffect(() => {
+    const element = badge.current;
+    if (!interactive || !window.IntersectionObserver) return;
+    let inView = false;
+    const update = () => element.toggleAttribute("data-pulsing", inView && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      update();
+    });
+    observer.observe(element);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", update);
+      element.removeAttribute("data-pulsing");
+    };
+  }, [interactive]);
+
+  return <p className="home-availability" ref={badge}>
+    <span className="home-availability-dot" aria-hidden="true"/>
+    Available to work
+  </p>;
+}
+
 export function PortfolioHome({ data, interactive = true }) {
   return <main className="portfolio-home" id="main-content" tabIndex={-1}>
     <section className="home-profile" aria-labelledby="home-title">
       <img className="home-portrait" src={PORTFOLIO_PORTRAIT} alt="" width="48" height="48" fetchPriority="high"/>
-      <div><h1 id="home-title">Insan Nurjaman</h1><p className="home-role">Product Designer &amp; Builder</p></div>
+      <div>
+        <h1 id="home-title">Insan Nurjaman</h1>
+        <p className="home-role">Product Designer &amp; Builder</p>
+        <AvailabilityBadge interactive={interactive}/>
+      </div>
       <p>I’m Insan. With 7+ years of experience, I turn complex problems into usable, scalable, and measurable product experiences across SaaS, CRM, e-commerce, trading platforms, design systems, and developer tools.</p>
       <div className="home-profile-actions">
         <a href={`mailto:${CONTACT_EMAIL}`} className="home-email">Email Me <img src={`${art}/outward.svg`} alt=""/></a>

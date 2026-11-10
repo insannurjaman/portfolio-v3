@@ -10,6 +10,36 @@
 .home-profile { display: flex; flex-direction: column; align-items: flex-start; font-size: 14px; }
 .home-portrait { display: block; border-radius: 14px; object-fit: cover; margin-bottom: 24px; }
 .home-profile .home-role { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 16px; }
+.home-profile .home-availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font: 500 12px/16px var(--font-sans);
+}
+.home-availability-dot {
+  position: relative;
+  flex: 0 0 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+}
+:root[data-theme="light"] .home-availability-dot { background: #15803d; }
+@media (prefers-reduced-motion: no-preference) {
+  .home-availability[data-pulsing] .home-availability-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: availability-pulse 2.4s ease-out infinite;
+  }
+}
+@keyframes availability-pulse {
+  from { opacity: .55; transform: scale(1); }
+  70%, to { opacity: 0; transform: scale(2.6); }
+}
 .home-profile > p { margin-top: 32px; line-height: 24px; }
 .home-profile-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .home-profile-actions a {
