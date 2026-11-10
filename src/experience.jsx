@@ -71,13 +71,18 @@ export function HomeExperience({ interactive = true }) {
   useEffect(() => {
     const list = timeline.current;
     if (!interactive || !list || !window.IntersectionObserver) return;
+    let inView = false;
+    const updateVisibility = () => setVisible(inView && !document.hidden);
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      setVisible(true);
-      observer.disconnect();
-    }, { rootMargin: "0px 0px -22% 0px" });
+      inView = entry.isIntersecting;
+      updateVisibility();
+    });
     observer.observe(list);
-    return () => observer.disconnect();
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", updateVisibility);
+    };
   }, [interactive]);
 
   return <section className="home-experience" id="experience" aria-labelledby="home-experience-title">
