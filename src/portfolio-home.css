@@ -28,17 +28,36 @@
 .home-profile-actions img { width: auto; height: auto; filter: var(--icon-on-page); }
 .home-profile-actions .home-email img { filter: var(--icon-on-action); }
 
-.home-company-rail { min-width: 0; overflow-x: auto; scrollbar-width: none; }
-.home-company-rail::-webkit-scrollbar { display: none; }
-.home-company-rail ul {
+.home-companies { --company-logo-gap: 64px; display: grid; gap: 16px; min-width: 0; }
+.home-company-rail { min-width: 0; overflow: clip; }
+.home-company-track ul {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 64px;
-  width: max-content;
+  gap: 16px var(--company-logo-gap);
   padding: 0;
   margin: 0;
   list-style: none;
 }
+.home-company-track ul[aria-hidden="true"] { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-company-track {
+    display: flex;
+    width: max-content;
+    animation: company-logo-roll 28s linear infinite;
+  }
+  .home-company-track ul {
+    flex: none;
+    flex-wrap: nowrap;
+    padding-inline-end: var(--company-logo-gap);
+  }
+  .home-company-track ul[aria-hidden="true"] { display: flex; }
+}
+@keyframes company-logo-roll {
+  to { transform: translateX(-50%); }
+}
+
 .home-company-rail li { flex: none; }
 .home-company-rail li > img { display: block; max-width: none; filter: var(--logo-filter); }
 .home-company-rail li:nth-child(2) { width: 130px; padding-inline: .28px; }
@@ -101,7 +120,7 @@
 @media (max-width: 520px) {
   .portfolio-home { padding-top: 112px; }
   .home-card-grid { grid-template-columns: minmax(0, 1fr); }
-  .home-company-rail ul { gap: 32px; }
+  .home-companies { --company-logo-gap: 32px; }
   .home-profile-actions a, .home-testimonials button, .home-all-recommendations summary { min-height: 44px; }
   .home-all-recommendations summary { padding-block: 13px; }
   .home-card p { font-size: 14px; line-height: 1.55; }

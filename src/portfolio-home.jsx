@@ -25,20 +25,37 @@ const projects = [
   { path: "/pixel-round", title: "Pixel Round", description: "A Figma plugin I built to round decimal values across layers, frames, text, and components for cleaner handoff." },
   { path: "/uiqa", title: "UIQA", description: "An open-source CLI and GitHub Action I built to flag recurring UX issues in frontend code before merge." },
 ];
-const brands = [["accelbyte", "AccelByte"], ["ruangguru", "Ruangguru"], ["tokopedia", "Tokopedia"], ["eftax", "Eftax"]];
+const brands = [
+  ["accelbyte", "AccelByte", 129, 28],
+  ["ruangguru", "Ruangguru", 80, 35],
+  ["tokopedia", "Tokopedia", 147, 29],
+  ["eftax", "Eftax", 55, 35],
+];
 const featuredRecommendations = ["adi-ritonga", "bonie-rimba-celebica", "utari-ambarwati"].map(id =>
   recommendationContent.recommendations.find(item => item.id === id),
 );
 
+function CompanyLogoList({ duplicate = false }) {
+  return <ul role="list" aria-hidden={duplicate || undefined}>
+    <li className="home-saphyte-logo"><span className="sr-only">Saphyte</span>
+      {Array.from({ length: 7 }, (_, index) => <img key={index} src={`${art}/saphyte-${index + 1}.svg`} alt=""/>)}
+    </li>
+    {brands.map(([asset, label, width, height]) => <li key={asset}>
+      <img src={`${art}/${asset}.svg`} alt={label} width={width} height={height}/>
+    </li>)}
+  </ul>;
+}
+
 function CompanyLogos() {
-  return <div className="home-company-rail" role="region" aria-label="Companies I have worked with" tabIndex={0}>
-    <ul>
-      <li className="home-saphyte-logo"><span className="sr-only">Saphyte</span>
-        {Array.from({ length: 7 }, (_, index) => <img key={index} src={`${art}/saphyte-${index + 1}.svg`} alt=""/>)}
-      </li>
-      {brands.map(([asset, label]) => <li key={asset}><img src={`${art}/${asset}.svg`} alt={label}/></li>)}
-    </ul>
-  </div>;
+  return <section className="home-companies" id="company-list" aria-labelledby="home-companies-title">
+    <h2 id="home-companies-title">Trusted design partner for companies worldwide</h2>
+    <div className="home-company-rail">
+      <div className="home-company-track">
+        <CompanyLogoList/>
+        <CompanyLogoList duplicate/>
+      </div>
+    </div>
+  </section>;
 }
 
 function HomeCover({ image }) {
@@ -109,6 +126,7 @@ export function PortfolioHome({ data, interactive = true }) {
         <a href={data?.linkedin || PORTFOLIO_LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn <img src={`${art}/outward.svg`} alt=""/></a>
       </div>
     </section>
+    <GitHubContributions interactive={interactive}/>
     <CompanyLogos/>
     <section className="home-project-section" id="selected-work" aria-labelledby="selected-work-title">
       <span id="work" aria-hidden="true"/>
@@ -124,7 +142,6 @@ export function PortfolioHome({ data, interactive = true }) {
         <HomeCover image={ANTIFLEX_UI_THUMBNAIL}/>
       </a>
     </section>
-    <GitHubContributions interactive={interactive}/>
     <HomeTestimonials interactive={interactive}/>
   </main>;
 }
