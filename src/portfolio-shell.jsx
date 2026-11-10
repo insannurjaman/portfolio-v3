@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ArrowUpRight, Menu, Search } from "lucide-react";
+import { ArrowUpRight, Menu, Moon, Search, Sun } from "lucide-react";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { RESUME_URL } from "./editorial-shell.jsx";
 import "./portfolio-shell.css";
@@ -29,8 +29,9 @@ export function ThemeSwitch() {
     try { localStorage.setItem("insan-portfolio-theme", theme); } catch { /* The current tab still changes theme. */ }
     setDark(!dark);
   }
+  const Icon = dark ? Moon : Sun;
   return <button className="portfolio-theme-switch" type="button" role="switch" aria-label="Dark mode" aria-checked={dark} onClick={toggle}>
-    <span aria-hidden="true"><i/></span>
+    <Icon size={20} aria-hidden="true"/>
   </button>;
 }
 

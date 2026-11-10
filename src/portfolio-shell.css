@@ -43,11 +43,10 @@
   padding: 0;
   border: 0;
   background: none;
+  color: var(--text);
+  cursor: pointer;
 }
-.portfolio-theme-switch > span { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--action-bg); }
-.portfolio-theme-switch i { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--action-text); }
-.portfolio-theme-switch[aria-checked="true"] i { transform: translateX(16px); }
-.portfolio-theme-switch:hover > span { background: var(--action-hover); }
+.portfolio-theme-switch:hover { background: var(--surface-hover); }
 
 .portfolio-footer {
   display: grid;
