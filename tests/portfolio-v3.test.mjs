@@ -16,7 +16,7 @@ test("new homepage renders the Figma content order, correct case links and all o
     const { PortfolioHome } = await server.ssrLoadModule("/src/portfolio-home.jsx");
     const html = render(create(PortfolioHome));
     assert.deepEqual([...html.matchAll(/<section\b[^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]),
-      ["home-title", "selected-work-title", "shipped-projects-title", "home-testimonials-title"]);
+      ["home-title", "selected-work-title", "shipped-projects-title", "home-github-title", "home-testimonials-title"]);
     assert.deepEqual([...html.matchAll(/<a[^>]*data-funnel="selected_case" href="([^"]+)"/g)].map(match => match[1]),
       ["/halodish-apps", "/improve-otp-push-notification", "/ags-onboarding", "/saphyte-kyc-verification"]);
     assert.match(html, /src="\/media\/saphyte-kyc\/admin-queue.webp"/);

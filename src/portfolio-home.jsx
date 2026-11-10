@@ -5,6 +5,7 @@ import { KYC_CASE_PATH, KYC_SCREENS } from "./kyc-content.js";
 import { PROJECT_THUMBNAIL_OVERRIDES, ANTIFLEX_UI_THUMBNAIL } from "./project-thumbnail-overrides.js";
 import { ANTIFLEX_UI } from "./antiflex-project.js";
 import { PORTFOLIO_LINKEDIN, PORTFOLIO_PORTRAIT } from "./portfolio-shell.jsx";
+import { GitHubContributions } from "./github-contributions.jsx";
 import recommendationContent from "./recommendations-content.json";
 import "./portfolio-home.css";
 
@@ -123,6 +124,7 @@ export function PortfolioHome({ data, interactive = true }) {
         <HomeCover image={ANTIFLEX_UI_THUMBNAIL}/>
       </a>
     </section>
+    <GitHubContributions interactive={interactive}/>
     <HomeTestimonials interactive={interactive}/>
   </main>;
 }
