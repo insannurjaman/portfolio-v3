@@ -1,9 +1,9 @@
 import { SYSTEM_DOCS, docsTopics } from "./system-docs-data.js";
 export const SITE_ORIGIN = "https://insanbuilds.vercel.app";
 export const SOCIAL_IMAGE = Object.freeze({
-  url: `${SITE_ORIGIN}/social/insan-portfolio-16201396.png`,
-  width: 1734, height: 907, type: "image/png",
-  alt: "Insan Nurjaman portfolio: product design across SaaS, design systems, mobile products, and AI experiences.",
+  url: `${SITE_ORIGIN}/social/insanbuilds-og.png`,
+  width: 1200, height: 630, type: "image/png",
+  alt: "Portrait of Insan Nurjaman, Product Designer & Builder.",
 });
 const overrides = {
   "/": ["Insan Nurjaman | Product Designer · Enterprise UX & Design Systems", "Product designer with 7+ years across complex workflows, enterprise SaaS, design systems, and design-to-engineering. Explore selected work and contact Insan."],
