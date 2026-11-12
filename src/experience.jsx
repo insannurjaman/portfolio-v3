@@ -5,6 +5,9 @@ import "./experience.css";
 
 export const EXPERIENCE_SOURCE = "https://www.linkedin.com/in/insannurjaman/";
 
+const CAREER_START_YEAR = 2019;
+const CAREER_START_MONTH = 8; // September, zero-indexed
+
 // Experience follows the owner-supplied Insan_Nurjaman_Resume.pdf.
 export const EXPERIENCE = [
   {
@@ -85,8 +88,15 @@ export function HomeExperience({ interactive = true }) {
     };
   }, [interactive]);
 
+  const today = new Date();
+  const yearsOfExperience = today.getFullYear() - CAREER_START_YEAR -
+    (today.getMonth() < CAREER_START_MONTH ? 1 : 0);
+
   return <section className="home-experience" id="experience" aria-labelledby="home-experience-title">
-    <h2 id="home-experience-title">Experience</h2>
+    <header>
+      <h2 id="home-experience-title">{yearsOfExperience}+ years of designing, building, and shipping digital products.</h2>
+      <p>From working with cross-functional teams to building products of my own, I focus on turning ideas into useful experiences.</p>
+    </header>
     <ol className="home-experience-list" role="list" ref={timeline} data-sheen={visible || undefined}>
       {EXPERIENCE.map(item => <li key={item.id}>
         <ExperienceLogo id={item.id} compact/>

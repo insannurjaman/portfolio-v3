@@ -103,8 +103,8 @@
 .home-saphyte-logo > img:nth-of-type(7) { left: 41.54%; top: 21.76%; }
 
 .home-project-section { display: grid; gap: 32px; position: relative; }
-.home-project-section > header { display: grid; gap: 8px; }
-.home-project-section > header p { color: var(--muted); font-size: 14px; line-height: 24px; }
+:is(.home-project-section, .home-experience) > header { display: grid; gap: 8px; }
+:is(.home-project-section, .home-experience) > header p { color: var(--muted); font-size: 14px; line-height: 24px; }
 .home-project-section > #work, .home-spotlight > span { position: absolute; inset: 0 auto auto 0; }
 .home-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 12px; }
 .home-card { min-width: 0; }

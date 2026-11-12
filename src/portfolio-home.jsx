@@ -105,7 +105,7 @@ export function PortfolioHome({ data, interactive = true }) {
         <p className="home-role">Product Designer &amp; Builder</p>
         <AvailabilityBadge interactive={interactive}/>
       </div>
-      <p>I’m Insan. With 7+ years of experience, I turn complex problems into usable, scalable, and measurable product experiences across SaaS, CRM, e-commerce, trading platforms, design systems, and developer tools.</p>
+      <p>I’m Insan. I design and build digital products that make complex things easier. Whether I’m working with a team or shipping something of my own, I care about solving real problems and creating experiences people enjoy using.</p>
       <div className="home-profile-actions">
         <a href={`mailto:${CONTACT_EMAIL}`} className="home-email">Email Me <img src={`${art}/outward.svg`} alt=""/></a>
         <a href={data?.linkedin || PORTFOLIO_LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn <img src={`${art}/outward.svg`} alt=""/></a>
