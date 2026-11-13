@@ -6,7 +6,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 
-const expected = "https://drive.google.com/file/d/1HkjKyZpRm60VEEsZf932QFnPh0jIdxAH/view?usp=sharing";
+const expected = "https://drive.google.com/file/d/1AY0Jzjw9qXtxxQEngp_mIGxmzh5neGdL/view?usp=sharing";
 test("current resume URL is shared by content and editorial footer", async () => {
   const data = JSON.parse(readFileSync(new URL("../public/data/content.json", import.meta.url), "utf8"));
   assert.equal(data.resume, expected);

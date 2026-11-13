@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu, Search, X } from "lucide-react";
 import { CONTACT_EMAIL } from "./hiring-content.js";
 import { BACKGROUND_MEDIA } from "./background-media.js";
 
-export const RESUME_URL = "https://drive.google.com/file/d/1HkjKyZpRm60VEEsZf932QFnPh0jIdxAH/view?usp=sharing";
+export const RESUME_URL = "https://drive.google.com/file/d/1AY0Jzjw9qXtxxQEngp_mIGxmzh5neGdL/view?usp=sharing";
 const LINKEDIN = "https://www.linkedin.com/in/insannurjaman/";
 const secondary = [["Design systems", "/design-systems"], ["Tools & side projects", "/side-projects"], ["Experiments", "/work/ai"], ["AI practice", "/ai-practice"], ["Industry explorations", "/industries"]];
 
